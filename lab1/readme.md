@@ -5,3 +5,4 @@
 **IP-план:**
 
 ![ip plan](https://github.com/user-attachments/assets/bdde2951-1907-47a9-ad07-aa81311df1a2)
+[lab1_ip_plan.xlsx](https://github.com/user-attachments/files/21844063/lab1_ip_plan.xlsx)
