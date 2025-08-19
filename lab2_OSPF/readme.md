@@ -203,13 +203,13 @@ trace to 192.168.2.2, 8 hops max, press Ctrl+C to stop
 
 ### Статус OSPF-соседей на примере Spine1:
 ```
-Spine1#show ip interface br
+Spine1#show ip interface br | exclude FastEthernet0/0
 Interface                  IP-Address      OK? Method Status                Protocol
-FastEthernet0/0            unassigned      YES NVRAM  administratively down down
 GigabitEthernet1/0         10.0.0.1        YES NVRAM  up                    up
 GigabitEthernet2/0         10.0.1.1        YES NVRAM  up                    up
 GigabitEthernet3/0         10.0.2.1        YES NVRAM  up                    up
 Loopback0                  1.1.1.1         YES manual up                    up
+
 Spine1#show ip ospf neighbor
 
 Neighbor ID     Pri   State           Dead Time   Address         Interface
