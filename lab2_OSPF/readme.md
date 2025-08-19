@@ -6,6 +6,7 @@
 
 Настройка интерфейсов согласно IP-плана:
 ```
+Spine1#
 interface GigabitEthernet1/0
  ip address 10.0.0.1 255.255.255.252
  negotiation auto
