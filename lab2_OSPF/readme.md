@@ -5,8 +5,9 @@
 ![ip plan](https://github.com/user-attachments/assets/159fdeb7-0d0f-48fb-810d-d1845e5c4b42)
 
 Настройка интерфейсов согласно IP-плана:
+Spine1:
+
 ```
-Spine1#
 interface GigabitEthernet1/0
  ip address 10.0.0.1 255.255.255.252
  negotiation auto
