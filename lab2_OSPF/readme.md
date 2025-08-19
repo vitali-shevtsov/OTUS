@@ -169,3 +169,15 @@ router ospf 1
  network 192.168.2.0 0.0.0.255 area 0
 
 ```
+
+### Leaf3:
+
+```
+router ospf 1
+ router-id 33.33.33.33
+ log-adjacency-changes
+ network 10.0.2.0 0.0.0.3 area 0
+ network 10.0.5.0 0.0.0.3 area 0
+ network 192.168.3.0 0.0.0.255 area 0
+ network 192.168.4.0 0.0.0.255 area 0
+```
