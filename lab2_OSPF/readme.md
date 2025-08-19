@@ -122,3 +122,16 @@ interface GigabitEthernet6/0
  negotiation auto
 end
 ```
+
+## 2) Базовая настройка OSPF:
+
+### Spine1:
+
+```
+router ospf 1
+ router-id 1.1.1.1
+ log-adjacency-changes
+ network 10.0.0.0 0.0.0.3 area 0
+ network 10.0.1.0 0.0.0.3 area 0
+ network 10.0.2.0 0.0.0.3 area 0
+```
