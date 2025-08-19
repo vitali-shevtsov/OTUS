@@ -181,3 +181,12 @@ router ospf 1
  network 192.168.3.0 0.0.0.255 area 0
  network 192.168.4.0 0.0.0.255 area 0
 ```
+
+## 3) Проверка:
+### Проверка сетевой связности на примере PC1 и PC2:
+```
+PC1> ping 192.168.2.2
+84 bytes from 192.168.2.2 icmp_seq=3 ttl=61 time=67.435 ms
+84 bytes from 192.168.2.2 icmp_seq=4 ttl=61 time=63.898 ms
+84 bytes from 192.168.2.2 icmp_seq=5 ttl=61 time=61.055 ms
+```
