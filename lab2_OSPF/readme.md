@@ -185,8 +185,12 @@ router ospf 1
 ## 3) Проверка:
 ### Проверка сетевой связности на примере PC1 и PC2:
 ```
+Checking for duplicate address...
+PC1 : 192.168.1.2 255.255.255.0 gateway 192.168.1.1
+
 PC1> ping 192.168.2.2
 84 bytes from 192.168.2.2 icmp_seq=3 ttl=61 time=67.435 ms
 84 bytes from 192.168.2.2 icmp_seq=4 ttl=61 time=63.898 ms
 84 bytes from 192.168.2.2 icmp_seq=5 ttl=61 time=61.055 ms
+
 ```
