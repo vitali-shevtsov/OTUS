@@ -5,7 +5,7 @@
 ![ip plan](https://github.com/user-attachments/assets/159fdeb7-0d0f-48fb-810d-d1845e5c4b42)
 
 ## 1) Настройка интерфейсов согласно IP-плана:
-В лабе использовался Cisco IOS.
+Лаба запускалась на Cisco IOS.
 
 Loopback-интерфейсы будут использоваться в качестве router-id для процесса OSPF.
 
