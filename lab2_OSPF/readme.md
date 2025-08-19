@@ -9,6 +9,9 @@
 ### Spine1:
 
 ```
+interface Loopback0
+ ip address 1.1.1.1 255.255.255.255
+
 interface GigabitEthernet1/0
  ip address 10.0.0.1 255.255.255.252
  negotiation auto
@@ -28,6 +31,9 @@ end
 ### Spine2:
 
 ```
+interface Loopback0
+ ip address 2.2.2.2 255.255.255.255
+
 interface GigabitEthernet1/0
  ip address 10.0.4.1 255.255.255.252
  negotiation auto
@@ -47,6 +53,9 @@ end
 ### Leaf1:
 
 ```
+interface Loopback0
+ ip address 11.11.11.11 255.255.255.255
+
 interface GigabitEthernet1/0
  ip address 10.0.0.2 255.255.255.252
  negotiation auto
@@ -66,6 +75,9 @@ end
 ### Leaf2:
 
 ```
+interface Loopback0
+ ip address 22.22.22.22 255.255.255.255
+
 interface GigabitEthernet1/0
  ip address 10.0.4.2 255.255.255.252
  negotiation auto
@@ -85,6 +97,9 @@ end
 ### Leaf3:
 
 ```
+interface Loopback0
+ ip address 33.33.33.33 255.255.255.255
+
 interface GigabitEthernet3/0
  ip address 10.0.2.2 255.255.255.252
  negotiation auto
