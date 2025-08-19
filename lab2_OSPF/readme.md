@@ -6,7 +6,7 @@
 
 Настройка интерфейсов согласно IP-плана:
 
-###Spine1:
+### Spine1:
 
 ```
 interface GigabitEthernet1/0
