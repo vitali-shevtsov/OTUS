@@ -24,3 +24,22 @@ interface GigabitEthernet3/0
  negotiation auto
 end
 ```
+
+### Spine2:
+
+```
+interface GigabitEthernet1/0
+ ip address 10.0.4.1 255.255.255.252
+ negotiation auto
+end
+
+interface GigabitEthernet2/0
+ ip address 10.0.3.1 255.255.255.252
+ negotiation auto
+end
+
+interface GigabitEthernet4/0
+ ip address 10.0.5.1 255.255.255.252
+ negotiation auto
+end
+```
