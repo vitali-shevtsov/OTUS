@@ -199,5 +199,21 @@ trace to 192.168.2.2, 8 hops max, press Ctrl+C to stop
  2   10.0.0.1   31.131 ms  30.971 ms  30.032 ms
  3   10.0.1.2   51.177 ms  53.174 ms  52.147 ms
  4   *192.168.2.2   62.114 ms (ICMP type:3, code:3, Destination port unreachable)
+```
 
+### Статус OSPF-соседей на примере Spine1:
+```
+Spine1#show ip interface br
+Interface                  IP-Address      OK? Method Status                Protocol
+FastEthernet0/0            unassigned      YES NVRAM  administratively down down
+GigabitEthernet1/0         10.0.0.1        YES NVRAM  up                    up
+GigabitEthernet2/0         10.0.1.1        YES NVRAM  up                    up
+GigabitEthernet3/0         10.0.2.1        YES NVRAM  up                    up
+Loopback0                  1.1.1.1         YES manual up                    up
+Spine1#show ip ospf neighbor
+
+Neighbor ID     Pri   State           Dead Time   Address         Interface
+33.33.33.33       1   FULL/BDR        00:00:33    10.0.2.2        GigabitEthernet3/0
+22.22.22.22       1   FULL/BDR        00:00:31    10.0.1.2        GigabitEthernet2/0
+11.11.11.11       1   FULL/BDR        00:00:34    10.0.0.2        GigabitEthernet1/0
 ```
