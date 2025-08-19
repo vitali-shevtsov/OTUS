@@ -135,3 +135,37 @@ router ospf 1
  network 10.0.1.0 0.0.0.3 area 0
  network 10.0.2.0 0.0.0.3 area 0
 ```
+
+### Spine2:
+
+```
+router ospf 1
+ router-id 2.2.2.2
+ log-adjacency-changes
+ network 10.0.3.0 0.0.0.3 area 0
+ network 10.0.4.0 0.0.0.3 area 0
+ network 10.0.5.0 0.0.0.3 area 0
+```
+
+### Leaf1:
+
+```
+router ospf 1
+ router-id 11.11.11.11
+ log-adjacency-changes
+ network 10.0.0.0 0.0.0.3 area 0
+ network 10.0.3.0 0.0.0.3 area 0
+ network 192.168.1.0 0.0.0.255 area 0
+```
+
+### Leaf2:
+
+```
+router ospf 1
+ router-id 22.22.22.22
+ log-adjacency-changes
+ network 10.0.1.0 0.0.0.3 area 0
+ network 10.0.4.0 0.0.0.3 area 0
+ network 192.168.2.0 0.0.0.255 area 0
+
+```
