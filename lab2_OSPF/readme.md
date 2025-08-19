@@ -4,6 +4,10 @@
 
 ![ip plan](https://github.com/user-attachments/assets/159fdeb7-0d0f-48fb-810d-d1845e5c4b42)
 
+## Конфиги:
+
+
+
 ## 1) Настройка интерфейсов согласно IP-плана:
 Лаба запускалась на Cisco IOS.
 
