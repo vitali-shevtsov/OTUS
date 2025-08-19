@@ -217,3 +217,41 @@ Neighbor ID     Pri   State           Dead Time   Address         Interface
 22.22.22.22       1   FULL/BDR        00:00:31    10.0.1.2        GigabitEthernet2/0
 11.11.11.11       1   FULL/BDR        00:00:34    10.0.0.2        GigabitEthernet1/0
 ```
+### Таблица маршрутизации на примере Spine1:
+```
+Spine1#show ip route sum
+IP routing table name is Default-IP-Routing-Table(0)
+IP routing table maximum-paths is 16
+Route Source    Networks    Subnets     Overhead    Memory (bytes)
+connected       0           4           288         544
+static          0           0           0           0
+ospf 1          4           3           504         952
+  Intra-area: 7 Inter-area: 0 External-1: 0 External-2: 0
+  NSSA External-1: 0 NSSA External-2: 0
+internal        2                                   2312
+Total           6           7           792         3808
+Spine1#show ip route
+Codes: C - connected, S - static, R - RIP, M - mobile, B - BGP
+       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area
+       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+       E1 - OSPF external type 1, E2 - OSPF external type 2
+       i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2
+       ia - IS-IS inter area, * - candidate default, U - per-user static route
+       o - ODR, P - periodic downloaded static route
+
+Gateway of last resort is not set
+
+     1.0.0.0/32 is subnetted, 1 subnets
+C       1.1.1.1 is directly connected, Loopback0
+O    192.168.4.0/24 [110/2] via 10.0.2.2, 00:39:29, GigabitEthernet3/0
+     10.0.0.0/30 is subnetted, 6 subnets
+C       10.0.2.0 is directly connected, GigabitEthernet3/0
+O       10.0.3.0 [110/2] via 10.0.0.2, 00:39:29, GigabitEthernet1/0
+C       10.0.0.0 is directly connected, GigabitEthernet1/0
+C       10.0.1.0 is directly connected, GigabitEthernet2/0
+O       10.0.4.0 [110/2] via 10.0.1.2, 00:39:29, GigabitEthernet2/0
+O       10.0.5.0 [110/2] via 10.0.2.2, 00:39:29, GigabitEthernet3/0
+O    192.168.1.0/24 [110/2] via 10.0.0.2, 00:39:29, GigabitEthernet1/0
+O    192.168.2.0/24 [110/2] via 10.0.1.2, 00:39:29, GigabitEthernet2/0
+O    192.168.3.0/24 [110/2] via 10.0.2.2, 00:39:29, GigabitEthernet3/0
+```
