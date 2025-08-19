@@ -4,7 +4,7 @@
 
 ![ip plan](https://github.com/user-attachments/assets/159fdeb7-0d0f-48fb-810d-d1845e5c4b42)
 
-Настройка интерфейсов согласно IP-плана:
+## 1) Настройка интерфейсов согласно IP-плана:
 
 ### Spine1:
 
@@ -82,7 +82,7 @@ interface GigabitEthernet5/0
 end
 ```
 
-## Leaf3:
+### Leaf3:
 
 ```
 interface GigabitEthernet3/0
