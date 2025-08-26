@@ -93,17 +93,81 @@ router isis
 ```
 ### Leaf11:
 ```
-
+interface Loopback0
+ ip address 110.110.110.110 255.255.255.255
+!
+interface FastEthernet0/0
+ ip address 192.168.1.254 255.255.255.0
+!
+interface GigabitEthernet1/0
+ ip address 10.0.0.1 255.255.255.252
+ ip router isis
+!
+interface GigabitEthernet2/0
+ ip address 10.0.4.1 255.255.255.252
+ ip router isis
+!
+router isis
+ net 49.0002.1101.1011.0110.00
+ is-type level-1
+ passive-interface FastEthernet0/0
+ passive-interface Loopback0
 ```
 ### Leaf12:
 ```
-
+interface Loopback0
+ ip address 120.120.120.120 255.255.255.255
+!
+interface FastEthernet0/0
+ ip address 192.168.2.254 255.255.255.0
+!
+interface GigabitEthernet1/0
+ ip address 10.0.5.1 255.255.255.252
+ ip router isis
+!
+interface GigabitEthernet2/0
+ ip address 10.0.1.1 255.255.255.252
+ ip router isis
+!
+router isis
+ net 49.0002.1201.2012.0120.00
+ is-type level-1
+ passive-interface FastEthernet0/0
+ passive-interface Loopback0
 ```
 ### Leaf21:
 ```
-
+interface Loopback0
+ ip address 210.210.210.210 255.255.255.255
+!
+interface FastEthernet0/0
+ ip address 192.168.3.254 255.255.255.0
+!
+interface GigabitEthernet1/0
+ ip address 10.1.1.1 255.255.255.252
+ ip router isis
+!
+router isis
+ net 49.0003.2102.1021.0210.00
+ is-type level-1
+ passive-interface FastEthernet0/0
+ passive-interface Loopback0
 ```
 ### Leaf22:
 ```
-
+interface Loopback0
+ ip address 220.220.220.220 255.255.255.255
+!
+interface FastEthernet0/0
+ ip address 192.168.4.254 255.255.255.0
+!
+interface GigabitEthernet2/0
+ ip address 10.1.2.1 255.255.255.252
+ ip router isis
+!
+router isis
+ net 49.0003.2202.2022.0220.00
+ is-type level-1
+ passive-interface FastEthernet0/0
+ passive-interface Loopback0
 ```
