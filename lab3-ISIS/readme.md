@@ -28,3 +28,31 @@ router isis
  is-type level-2-only
  passive-interface Loopback0
 ```
+### Spine11:
+```
+
+```
+### Spine12:
+```
+
+```
+### Spine21:
+```
+
+```
+### Leaf11:
+```
+
+```
+### Leaf12:
+```
+
+```
+### Leaf21:
+```
+
+```
+### Leaf22:
+```
+
+```
