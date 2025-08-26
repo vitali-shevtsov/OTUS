@@ -329,3 +329,29 @@ i L1 192.168.3.0/24 [115/20] via 10.1.2.2, GigabitEthernet2/0
 i*L1 0.0.0.0/0 [115/10] via 10.1.2.2, GigabitEthernet2/0
 ```
 Leaf получил сети от соседа по IS-IS Level-1 и имеет 0/0 через Spine. 
+
+Аналогично проверяем на остальных роутерах.
+
+## 3) Проверка IP-связности между клиентами
+На примере PC1-PC4:
+
+```
+Checking for duplicate address...
+PC1 : 192.168.1.1 255.255.255.0 gateway 192.168.1.254
+
+PC1> ping 192.168.4.1
+84 bytes from 192.168.4.1 icmp_seq=1 ttl=59 time=314.417 ms
+84 bytes from 192.168.4.1 icmp_seq=2 ttl=59 time=295.655 ms
+84 bytes from 192.168.4.1 icmp_seq=3 ttl=59 time=232.276 ms
+84 bytes from 192.168.4.1 icmp_seq=4 ttl=59 time=369.507 ms
+84 bytes from 192.168.4.1 icmp_seq=5 ttl=59 time=260.369 ms
+
+PC1> trace  192.168.4.1
+trace to 192.168.4.1, 8 hops max, press Ctrl+C to stop
+ 1   192.168.1.254   35.078 ms  34.707 ms  29.228 ms
+ 2   10.0.4.2   87.880 ms  97.509 ms  89.833 ms
+ 3   10.0.3.1   85.916 ms  93.071 ms  198.512 ms
+ 4   10.1.0.2   236.761 ms  191.584 ms  141.270 ms
+ 5   10.1.2.1   281.257 ms  175.889 ms  288.368 ms
+ 6   *192.168.4.1   273.599 ms (ICMP type:3, code:3, Destination port unreachabl                e)
+```
