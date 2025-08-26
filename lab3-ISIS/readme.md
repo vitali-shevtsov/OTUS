@@ -297,3 +297,35 @@ i L1    120.120.120.120 [115/10] via 10.0.1.1, GigabitEthernet2/0
 i L2 192.168.3.0/24 [115/30] via 10.0.2.1, FastEthernet0/0
 ```
 Все сети на месте.
+
+### Leaf22:
+```
+Leaf22#show isis database
+
+IS-IS Level-1 Link State Database:
+LSPID                 LSP Seq Num  LSP Checksum  LSP Holdtime      ATT/P/OL
+Spine21.00-00         0x00000005   0x8529        828               1/0/0
+Leaf21.00-00          0x00000004   0x1F9C        777               0/0/0
+Leaf21.01-00          0x00000003   0xB36F        771               0/0/0
+Leaf22.00-00        * 0x00000004   0x64BF        917               0/0/0
+Leaf22.01-00        * 0x00000003   0x12CC        668               0/0/0
+```
+```
+Leaf22#show isis neighbors
+
+System Id      Type Interface IP Address      State Holdtime Circuit Id
+Spine21        L1   Gi2/0     10.1.2.2        UP    22       Leaf22.01
+```
+```
+Leaf22#show ip route isis
+     210.210.210.0/32 is subnetted, 1 subnets
+i L1    210.210.210.210 [115/20] via 10.1.2.2, GigabitEthernet2/0
+     21.0.0.0/32 is subnetted, 1 subnets
+i L1    21.21.21.21 [115/10] via 10.1.2.2, GigabitEthernet2/0
+     10.0.0.0/30 is subnetted, 3 subnets
+i L1    10.1.1.0 [115/20] via 10.1.2.2, GigabitEthernet2/0
+i L1    10.1.0.0 [115/20] via 10.1.2.2, GigabitEthernet2/0
+i L1 192.168.3.0/24 [115/20] via 10.1.2.2, GigabitEthernet2/0
+i*L1 0.0.0.0/0 [115/10] via 10.1.2.2, GigabitEthernet2/0
+```
+Leaf получил сети от соседа по IS-IS Level-1 и имеет 0/0 через Spine. 
