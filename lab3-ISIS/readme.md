@@ -173,3 +173,60 @@ router isis
  passive-interface FastEthernet0/0
  passive-interface Loopback0
 ```
+## 2) Проверка настроек 
+### SuperSpine:
+```
+SuperSpine#show isis database
+
+IS-IS Level-2 Link State Database:
+LSPID                 LSP Seq Num  LSP Checksum  LSP Holdtime      ATT/P/OL
+SuperSpine.00-00    * 0x00000007   0x51DB        754               0/0/0
+Spine11.00-00         0x00000004   0x635C        584               0/0/0
+Spine11.01-00         0x00000002   0x6DC5        606               0/0/0
+Spine12.00-00         0x00000004   0xD69D        681               0/0/0
+Spine12.03-00         0x00000002   0x8567        567               0/0/0
+Spine21.00-00         0x00000004   0x4896        538               0/0/0
+Spine21.03-00         0x00000002   0xBD2F        667               0/0/0
+```
+```
+SuperSpine#show isis neighbors
+
+System Id      Type Interface IP Address      State Holdtime Circuit Id
+Spine11        L2   Fa0/0     10.0.2.2        UP    9        Spine11.01
+Spine21        L2   Fa3/0     10.1.0.2        UP    9        Spine21.03
+Spine12        L2   Gi5/0     10.0.3.2        UP    9        Spine12.03
+```
+```
+SuperSpine#show ip route isis
+     220.220.220.0/32 is subnetted, 1 subnets
+i L2    220.220.220.220 [115/20] via 10.1.0.2, FastEthernet3/0
+     210.210.210.0/32 is subnetted, 1 subnets
+i L2    210.210.210.210 [115/20] via 10.1.0.2, FastEthernet3/0
+     21.0.0.0/32 is subnetted, 1 subnets
+i L2    21.21.21.21 [115/10] via 10.1.0.2, FastEthernet3/0
+     110.0.0.0/32 is subnetted, 1 subnets
+i L2    110.110.110.110 [115/20] via 10.0.3.2, GigabitEthernet5/0
+                        [115/20] via 10.0.2.2, FastEthernet0/0
+i L2 192.168.4.0/24 [115/20] via 10.1.0.2, FastEthernet3/0
+     10.0.0.0/30 is subnetted, 9 subnets
+i L2    10.1.2.0 [115/20] via 10.1.0.2, FastEthernet3/0
+i L2    10.1.1.0 [115/20] via 10.1.0.2, FastEthernet3/0
+i L2    10.0.0.0 [115/20] via 10.0.2.2, FastEthernet0/0
+i L2    10.0.1.0 [115/20] via 10.0.2.2, FastEthernet0/0
+i L2    10.0.4.0 [115/20] via 10.0.3.2, GigabitEthernet5/0
+i L2    10.0.5.0 [115/20] via 10.0.3.2, GigabitEthernet5/0
+     11.0.0.0/32 is subnetted, 1 subnets
+i L2    11.11.11.11 [115/10] via 10.0.2.2, FastEthernet0/0
+     12.0.0.0/32 is subnetted, 1 subnets
+i L2    12.12.12.12 [115/10] via 10.0.3.2, GigabitEthernet5/0
+i L2 192.168.1.0/24 [115/20] via 10.0.3.2, GigabitEthernet5/0
+                    [115/20] via 10.0.2.2, FastEthernet0/0
+i L2 192.168.2.0/24 [115/20] via 10.0.3.2, GigabitEthernet5/0
+                    [115/20] via 10.0.2.2, FastEthernet0/0
+     120.0.0.0/32 is subnetted, 1 subnets
+i L2    120.120.120.120 [115/20] via 10.0.3.2, GigabitEthernet5/0
+                        [115/20] via 10.0.2.2, FastEthernet0/0
+i L2 192.168.3.0/24 [115/20] via 10.1.0.2, FastEthernet3/0
+
+```
+
