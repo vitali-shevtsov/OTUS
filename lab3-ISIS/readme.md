@@ -5,6 +5,7 @@
 ![ip plan](https://github.com/user-attachments/assets/9ba0c2ac-322b-4703-abee-9c978c49bc6f)
 
 ## 1) Настройка маршрутизаторов, включая задание IPv4-адресов на интерфейсах. Базовая настройка IS-IS без опциональных параметров
+SuperSpine настраиваем как level-2, маршрутизаторы Leaf - как level-1, маршрутизаторы Spine остаются по умолчанию в роли level 1-2.
 
 ### SuperSpine:
 ```
