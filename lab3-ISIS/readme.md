@@ -353,5 +353,5 @@ trace to 192.168.4.1, 8 hops max, press Ctrl+C to stop
  3   10.0.3.1   85.916 ms  93.071 ms  198.512 ms
  4   10.1.0.2   236.761 ms  191.584 ms  141.270 ms
  5   10.1.2.1   281.257 ms  175.889 ms  288.368 ms
- 6   *192.168.4.1   273.599 ms (ICMP type:3, code:3, Destination port unreachabl                e)
+ 6   *192.168.4.1   273.599 ms (ICMP type:3, code:3, Destination port unreachable)
 ```
