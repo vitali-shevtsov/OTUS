@@ -229,4 +229,71 @@ i L2    120.120.120.120 [115/20] via 10.0.3.2, GigabitEthernet5/0
 i L2 192.168.3.0/24 [115/20] via 10.1.0.2, FastEthernet3/0
 
 ```
+Все сети на SuperSpine прилетели, в том числе клиентские.
 
+### Spine11:
+```
+Spine11#show isis database
+
+IS-IS Level-1 Link State Database:
+LSPID                 LSP Seq Num  LSP Checksum  LSP Holdtime      ATT/P/OL
+Spine11.00-00       * 0x00000005   0x6EFA        945               1/0/0
+Spine12.00-00         0x00000005   0x1B1A        1044              1/0/0
+Leaf11.00-00          0x00000003   0x1199        420               0/0/0
+Leaf11.01-00          0x00000003   0xB3D5        1040              0/0/0
+Leaf11.02-00          0x00000003   0xAEB7        1086              0/0/0
+Leaf12.00-00          0x00000004   0xB23C        1080              0/0/0
+Leaf12.01-00          0x00000002   0x160E        430               0/0/0
+Leaf12.02-00          0x00000003   0x0B39        1131              0/0/0
+IS-IS Level-2 Link State Database:
+LSPID                 LSP Seq Num  LSP Checksum  LSP Holdtime      ATT/P/OL
+SuperSpine.00-00      0x00000008   0x4FDC        1186              0/0/0
+Spine11.00-00       * 0x00000004   0x635C        321               0/0/0
+Spine11.01-00       * 0x00000003   0x6BC6        1164              0/0/0
+Spine12.00-00         0x00000004   0xD69D        414               0/0/0
+Spine12.03-00         0x00000003   0x8368        1076              0/0/0
+Spine21.00-00         0x00000005   0x4697        969               0/0/0
+Spine21.03-00         0x00000002   0xBD2F        400               0/0/0
+```
+Видим, что на Spine две Link State базы, поскольку работает в роли IS-IS Level-1/2.
+
+```
+Spine11#show isis neighbor
+
+System Id      Type Interface IP Address      State Holdtime Circuit Id
+Leaf11         L1   Gi1/0     10.0.0.1        UP    7        Leaf11.01
+SuperSpine     L2   Fa0/0     10.0.2.1        UP    23       Spine11.01
+Leaf12         L1   Gi2/0     10.0.1.1        UP    9        Leaf12.02
+```
+
+```
+Spine11#show ip route isis
+     220.220.220.0/32 is subnetted, 1 subnets
+i L2    220.220.220.220 [115/30] via 10.0.2.1, FastEthernet0/0
+     210.210.210.0/32 is subnetted, 1 subnets
+i L2    210.210.210.210 [115/30] via 10.0.2.1, FastEthernet0/0
+     1.0.0.0/32 is subnetted, 1 subnets
+i L2    1.1.1.1 [115/10] via 10.0.2.1, FastEthernet0/0
+     21.0.0.0/32 is subnetted, 1 subnets
+i L2    21.21.21.21 [115/20] via 10.0.2.1, FastEthernet0/0
+     110.0.0.0/32 is subnetted, 1 subnets
+i L1    110.110.110.110 [115/10] via 10.0.0.1, GigabitEthernet1/0
+i L2 192.168.4.0/24 [115/30] via 10.0.2.1, FastEthernet0/0
+     10.0.0.0/30 is subnetted, 9 subnets
+i L2    10.1.2.0 [115/30] via 10.0.2.1, FastEthernet0/0
+i L1    10.0.3.0 [115/30] via 10.0.1.1, GigabitEthernet2/0
+                 [115/30] via 10.0.0.1, GigabitEthernet1/0
+i L2    10.1.1.0 [115/30] via 10.0.2.1, FastEthernet0/0
+i L2    10.1.0.0 [115/20] via 10.0.2.1, FastEthernet0/0
+i L1    10.0.4.0 [115/20] via 10.0.0.1, GigabitEthernet1/0
+i L1    10.0.5.0 [115/20] via 10.0.1.1, GigabitEthernet2/0
+     12.0.0.0/32 is subnetted, 1 subnets
+i L1    12.12.12.12 [115/20] via 10.0.1.1, GigabitEthernet2/0
+                    [115/20] via 10.0.0.1, GigabitEthernet1/0
+i L1 192.168.1.0/24 [115/10] via 10.0.0.1, GigabitEthernet1/0
+i L1 192.168.2.0/24 [115/10] via 10.0.1.1, GigabitEthernet2/0
+     120.0.0.0/32 is subnetted, 1 subnets
+i L1    120.120.120.120 [115/10] via 10.0.1.1, GigabitEthernet2/0
+i L2 192.168.3.0/24 [115/30] via 10.0.2.1, FastEthernet0/0
+```
+Все сети на месте.
