@@ -30,15 +30,66 @@ router isis
 ```
 ### Spine11:
 ```
-
+interface Loopback0
+ ip address 11.11.11.11 255.255.255.255
+!
+interface FastEthernet0/0
+ ip address 10.0.2.2 255.255.255.252
+ ip router isis
+!
+interface GigabitEthernet1/0
+ ip address 10.0.0.2 255.255.255.252
+ ip router isis
+!
+interface GigabitEthernet2/0
+ ip address 10.0.1.2 255.255.255.252
+ ip router isis
+!
+router isis
+ net 49.0002.0110.1101.1011.00
+ passive-interface Loopback0
 ```
 ### Spine12:
 ```
-
+interface Loopback0
+ ip address 12.12.12.12 255.255.255.255
+!
+interface GigabitEthernet1/0
+ ip address 10.0.5.2 255.255.255.252
+ ip router isis
+!
+interface GigabitEthernet2/0
+ ip address 10.0.4.2 255.255.255.252
+ ip router isis
+!
+interface GigabitEthernet5/0
+ ip address 10.0.3.2 255.255.255.252
+ ip router isis
+!
+router isis
+ net 49.0002.0120.1201.2012.00
+ passive-interface Loopback0
 ```
 ### Spine21:
 ```
-
+interface Loopback0
+ ip address 21.21.21.21 255.255.255.255
+!
+interface GigabitEthernet1/0
+ ip address 10.1.1.2 255.255.255.252
+ ip router isis
+!
+interface GigabitEthernet2/0
+ ip address 10.1.2.2 255.255.255.252
+ ip router isis
+!
+interface FastEthernet3/0
+ ip address 10.1.0.2 255.255.255.252
+ ip router isis
+!
+router isis
+ net 49.0003.0210.2102.1021.00
+ passive-interface Loopback0
 ```
 ### Leaf11:
 ```
