@@ -138,6 +138,8 @@ router bgp 65300
  no auto-summary
 ```
 ## 2) Проверка
+У Spine1 установлены соседства с каждым Leaf:
+
 ```
 Spine1#show ip bgp summary
 Neighbor        V    AS MsgRcvd MsgSent   TblVer  InQ OutQ Up/Down  State/PfxRcd
@@ -145,6 +147,7 @@ Neighbor        V    AS MsgRcvd MsgSent   TblVer  InQ OutQ Up/Down  State/PfxRcd
 10.0.2.2        4 65200      57      57        4    0    0 00:51:49        1
 10.0.3.2        4 65300      57      57        4    0    0 00:51:47        1
 ```
+Сети клиентом по BGP прилетели:
 ```
 Spine1#show ip bgp
    Network          Next Hop            Metric LocPrf Weight Path
