@@ -113,4 +113,27 @@ router bgp 65200
 ```
  ### Leaf3
 ```
+interface Loopback0
+ ip address 33.33.33.33 255.255.255.255
+!
+interface FastEthernet0/0
+ ip address 192.168.3.254 255.255.255.0
+!
+interface GigabitEthernet3/0
+ ip address 10.0.3.2 255.255.255.252
+!
+interface GigabitEthernet5/0
+ ip address 10.0.5.2 255.255.255.252
+!
+router bgp 65300
+ no synchronization
+ bgp log-neighbor-changes
+ network 192.168.3.0
+ neighbor SPINEs peer-group
+ neighbor SPINEs password clos
+ neighbor 10.0.3.1 remote-as 65000
+ neighbor 10.0.3.1 peer-group SPINEs
+ neighbor 10.0.5.1 remote-as 65000
+ neighbor 10.0.5.1 peer-group SPINEs
+ no auto-summary
 ```
