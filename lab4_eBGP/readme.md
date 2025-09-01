@@ -179,7 +179,8 @@ PC1> show ip
 NAME        : PC1[1]
 IP/MASK     : 192.168.1.1/24
 GATEWAY     : 192.168.1.254
-
+```
+```
 PC1> ping 192.168.3.1
 84 bytes from 192.168.3.1 icmp_seq=1 ttl=61 time=64.891 ms
 84 bytes from 192.168.3.1 icmp_seq=2 ttl=61 time=58.959 ms
