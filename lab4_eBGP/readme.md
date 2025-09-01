@@ -85,4 +85,32 @@ router bgp 65100
  neighbor 10.0.4.1 peer-group SPINEs
  no auto-summary
 ```
- 
+ ### Leaf2
+```
+interface Loopback0
+ ip address 22.22.22.22 255.255.255.255
+!
+interface FastEthernet0/0
+ ip address 192.168.2.254 255.255.255.0
+!
+interface GigabitEthernet1/0
+ ip address 10.0.6.2 255.255.255.252
+!
+interface GigabitEthernet2/0
+ ip address 10.0.2.2 255.255.255.252
+!
+router bgp 65200
+ no synchronization
+ bgp log-neighbor-changes
+ network 192.168.2.0
+ neighbor SPINEs peer-group
+ neighbor SPINEs password clos
+ neighbor 10.0.2.1 remote-as 65000
+ neighbor 10.0.2.1 peer-group SPINEs
+ neighbor 10.0.6.1 remote-as 65000
+ neighbor 10.0.6.1 peer-group SPINEs
+ no auto-summary
+```
+ ### Leaf3
+```
+```
