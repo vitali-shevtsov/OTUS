@@ -155,3 +155,20 @@ Spine1#show ip bgp
 *> 192.168.2.0      10.0.2.2                 0             0 65200 i
 *> 192.168.3.0      10.0.3.2                 0             0 65300 i
 ```
+Проверка на Leaf2:
+```
+Leaf2#show ip bgp summary
+Neighbor        V    AS MsgRcvd MsgSent   TblVer  InQ OutQ Up/Down  State/PfxRcd
+10.0.2.1        4 65000      62      62        4    0    0 00:56:20        2
+10.0.6.1        4 65000      62      62        4    0    0 00:56:17        2
+```
+Клиентские сети прилетают от каждого Spine:
+```
+Leaf2#show ip bgp
+   Network          Next Hop            Metric LocPrf Weight Path
+*  192.168.1.0      10.0.6.1                               0 65000 65100 i
+*>                  10.0.2.1                               0 65000 65100 i
+*> 192.168.2.0      0.0.0.0                  0         32768 i
+*  192.168.3.0      10.0.2.1                               0 65000 65300 i
+*>                  10.0.6.1                               0 65000 65300 i
+```
