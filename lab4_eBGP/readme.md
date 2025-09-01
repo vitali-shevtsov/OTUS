@@ -31,3 +31,29 @@ router bgp 65000
  neighbor 10.0.3.2 password clos
  no auto-summary
 ```
+### Spine2:
+```
+interface Loopback0
+ ip address 2.2.2.2 255.255.255.255
+!
+interface GigabitEthernet1/0
+ ip address 10.0.6.1 255.255.255.252
+!
+interface GigabitEthernet2/0
+ ip address 10.0.4.1 255.255.255.252
+!
+interface GigabitEthernet5/0
+ ip address 10.0.5.1 255.255.255.252
+ negotiation auto
+!
+router bgp 65000
+ no synchronization
+ bgp log-neighbor-changes
+ neighbor 10.0.4.2 remote-as 65100
+ neighbor 10.0.4.2 password clos
+ neighbor 10.0.5.2 remote-as 65300
+ neighbor 10.0.5.2 password clos
+ neighbor 10.0.6.2 remote-as 65200
+ neighbor 10.0.6.2 password clos
+ no auto-summary
+```
