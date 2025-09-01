@@ -140,8 +140,6 @@ router bgp 65300
 ## 2) Проверка
 ```
 Spine1#show ip bgp summary
-```
-```
 Neighbor        V    AS MsgRcvd MsgSent   TblVer  InQ OutQ Up/Down  State/PfxRcd
 10.0.1.2        4 65100      57      57        4    0    0 00:51:45        1
 10.0.2.2        4 65200      57      57        4    0    0 00:51:49        1
