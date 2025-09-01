@@ -57,3 +57,31 @@ router bgp 65000
  neighbor 10.0.6.2 password clos
  no auto-summary
 ```
+Для Leaf настраиваем peer-group и анонсируем клиентские сети через команду network:
+
+### Leaf1
+```
+interface Loopback0
+ ip address 11.11.11.11 255.255.255.255
+!
+interface FastEthernet0/0
+ ip address 192.168.1.254 255.255.255.0
+!
+interface GigabitEthernet1/0
+ ip address 10.0.1.2 255.255.255.252
+!
+interface GigabitEthernet2/0
+ ip address 10.0.4.2 255.255.255.252
+!
+router bgp 65100
+ no synchronization
+ bgp log-neighbor-changes
+ network 192.168.1.0
+ neighbor SPINEs peer-group
+ neighbor SPINEs password clos
+ neighbor 10.0.1.1 remote-as 65000
+ neighbor 10.0.1.1 peer-group SPINEs
+ neighbor 10.0.4.1 remote-as 65000
+ neighbor 10.0.4.1 peer-group SPINEs
+ no auto-summary
+```
