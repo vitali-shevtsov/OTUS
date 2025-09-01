@@ -137,3 +137,20 @@ router bgp 65300
  neighbor 10.0.5.1 peer-group SPINEs
  no auto-summary
 ```
+## 2) Проверка
+```
+Spine1#show ip bgp summary
+```
+```
+Neighbor        V    AS MsgRcvd MsgSent   TblVer  InQ OutQ Up/Down  State/PfxRcd
+10.0.1.2        4 65100      57      57        4    0    0 00:51:45        1
+10.0.2.2        4 65200      57      57        4    0    0 00:51:49        1
+10.0.3.2        4 65300      57      57        4    0    0 00:51:47        1
+```
+```
+Spine1#show ip bgp
+   Network          Next Hop            Metric LocPrf Weight Path
+*> 192.168.1.0      10.0.1.2                 0             0 65100 i
+*> 192.168.2.0      10.0.2.2                 0             0 65200 i
+*> 192.168.3.0      10.0.3.2                 0             0 65300 i
+```
