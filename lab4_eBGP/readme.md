@@ -172,3 +172,21 @@ Leaf2#show ip bgp
 *  192.168.3.0      10.0.2.1                               0 65000 65300 i
 *>                  10.0.6.1                               0 65000 65300 i
 ```
+Пинг между клиентами:
+```
+PC1> show ip
+
+NAME        : PC1[1]
+IP/MASK     : 192.168.1.1/24
+GATEWAY     : 192.168.1.254
+
+PC1> ping 192.168.3.1
+84 bytes from 192.168.3.1 icmp_seq=1 ttl=61 time=64.891 ms
+84 bytes from 192.168.3.1 icmp_seq=2 ttl=61 time=58.959 ms
+84 bytes from 192.168.3.1 icmp_seq=3 ttl=61 time=58.024 ms
+
+PC1> ping 192.168.2.1
+84 bytes from 192.168.2.1 icmp_seq=1 ttl=61 time=64.974 ms
+84 bytes from 192.168.2.1 icmp_seq=2 ttl=61 time=63.918 ms
+84 bytes from 192.168.2.1 icmp_seq=3 ttl=61 time=65.368 ms
+```
