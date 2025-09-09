@@ -130,3 +130,26 @@ bgp 100
   peer 1.1.1.1 enable
 #
 ```
+### 5. Настраиваем EVPN инстансы на Leaf1 и Leaf3
+### Leaf1:
+```
+#
+bridge-domain 20
+ vxlan vni 5020
+ evpn
+  route-distinguisher 12:1
+  vpn-target 2:2 export-extcommunity
+  vpn-target 2:2 import-extcommunity
+#
+```
+### Leaf3:
+```
+#
+bridge-domain 20
+ vxlan vni 5020
+ evpn
+  route-distinguisher 31:2
+  vpn-target 2:2 export-extcommunity
+  vpn-target 2:2 import-extcommunity
+#
+```
