@@ -171,3 +171,20 @@ interface Nve1
  vni 5020 head-end peer-list protocol bgp
 #
 ```
+### 7. Проверка настроек
+### Проверка vxlan-туннеля
+```
+<Leaf1>disp vxlan tunnel
+Number of vxlan tunnel : 1
+Tunnel ID   Source                Destination           State  Type     Uptime
+-----------------------------------------------------------------------------------
+4026531841  11.11.11.11           33.33.33.33           up     dynamic  23:51:18
+```
+### VNI-статус:
+```
+<Leaf1> disp vxlan vni
+Number of vxlan vni : 1
+VNI            BD-ID            State   
+---------------------------------------
+5020           20               up         
+```
