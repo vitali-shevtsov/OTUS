@@ -64,7 +64,7 @@ ospf 1
     Reply from 2.2.2.2: bytes=56 Sequence=4 ttl=254 time=6 ms
     Reply from 2.2.2.2: bytes=56 Sequence=5 ttl=254 time=5 ms
 ```
-### 2. Настраиваем пользовательские интерфейсы на Leaf1 и Leaf3, 
+### 2. Настраиваем пользовательские интерфейсы на Leaf1 и Leaf3 
 ### Leaf1
 ```
 #
@@ -85,4 +85,10 @@ interface GE1/0/3.1 mode l2
  bridge-domain 20
 #
 ```
-
+### 3. Включаем EVPN в качестве control plane для VxLAN на всех сетевых хостах
+### На примере Leaf1
+```
+#
+evpn-overlay enable
+#
+```
