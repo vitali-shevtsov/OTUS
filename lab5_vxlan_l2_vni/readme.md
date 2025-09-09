@@ -38,3 +38,30 @@ ospf 1
   network 10.1.2.0 0.0.0.3
 #
 ```
+### После настройки на всех хостах, проверяем связность: 
+```
+<Spine1>ping 11.11.11.11
+  PING 11.11.11.11: 56  data bytes, press CTRL_C to break
+    Reply from 11.11.11.11: bytes=56 Sequence=1 ttl=255 time=4 ms
+    Reply from 11.11.11.11: bytes=56 Sequence=2 ttl=255 time=4 ms
+    Reply from 11.11.11.11: bytes=56 Sequence=3 ttl=255 time=3 ms
+    Reply from 11.11.11.11: bytes=56 Sequence=4 ttl=255 time=3 ms
+    Reply from 11.11.11.11: bytes=56 Sequence=5 ttl=255 time=3 ms
+   
+<Spine1>ping 33.33.33.33
+  PING 33.33.33.33: 56  data bytes, press CTRL_C to break
+    Reply from 33.33.33.33: bytes=56 Sequence=1 ttl=255 time=10 ms
+    Reply from 33.33.33.33: bytes=56 Sequence=2 ttl=255 time=4 ms
+    Reply from 33.33.33.33: bytes=56 Sequence=3 ttl=255 time=4 ms
+    Reply from 33.33.33.33: bytes=56 Sequence=4 ttl=255 time=6 ms
+    Reply from 33.33.33.33: bytes=56 Sequence=5 ttl=255 time=3 ms
+
+<Spine1>ping 2.2.2.2
+  PING 2.2.2.2: 56  data bytes, press CTRL_C to break
+    Reply from 2.2.2.2: bytes=56 Sequence=1 ttl=254 time=22 ms
+    Reply from 2.2.2.2: bytes=56 Sequence=2 ttl=254 time=6 ms
+    Reply from 2.2.2.2: bytes=56 Sequence=3 ttl=254 time=6 ms
+    Reply from 2.2.2.2: bytes=56 Sequence=4 ttl=254 time=6 ms
+    Reply from 2.2.2.2: bytes=56 Sequence=5 ttl=254 time=5 ms
+```
+
