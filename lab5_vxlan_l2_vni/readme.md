@@ -188,3 +188,24 @@ VNI            BD-ID            State
 ---------------------------------------
 5020           20               up         
 ```
+### Проверка связности между VPC и VPC4:
+```
+VPC> show ip 
+
+NAME        : VPC[1]
+IP/MASK     : 192.168.1.1/24
+GATEWAY     : 0.0.0.0
+DNS         : 
+MAC         : 00:50:79:66:68:cd
+LPORT       : 20000
+RHOST:PORT  : 127.0.0.1:30000
+MTU         : 1500
+
+VPC> ping 192.168.1.2
+
+84 bytes from 192.168.1.2 icmp_seq=1 ttl=64 time=7.175 ms
+84 bytes from 192.168.1.2 icmp_seq=2 ttl=64 time=8.619 ms
+84 bytes from 192.168.1.2 icmp_seq=3 ttl=64 time=8.553 ms
+84 bytes from 192.168.1.2 icmp_seq=4 ttl=64 time=9.186 ms
+84 bytes from 192.168.1.2 icmp_seq=5 ttl=64 time=10.672 ms
+```
