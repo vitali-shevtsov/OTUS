@@ -17,29 +17,24 @@
 
 ## Настройка
 
-### 1. Настройка протокола маршрутизации для underlay-сети
-### Spine1:
+### 1. Настройка адресации и протокола маршрутизации для underlay-сети
+### На примере Spine1 (аналогично для остальных сетевых хостов):
 ```
-interface Loopback0
- ip address 1.1.1.1 255.255.255.255
-!
-interface GigabitEthernet1/0
- ip address 10.0.1.1 255.255.255.252
-!
-interface GigabitEthernet2/0
- ip address 10.0.2.1 255.255.255.252
-!
-interface GigabitEthernet3/0
- ip address 10.0.3.1 255.255.255.252
-!
-router bgp 65000
- no synchronization
- bgp log-neighbor-changes
- neighbor 10.0.1.2 remote-as 65100
- neighbor 10.0.1.2 password clos
- neighbor 10.0.2.2 remote-as 65200
- neighbor 10.0.2.2 password clos
- neighbor 10.0.3.2 remote-as 65300
- neighbor 10.0.3.2 password clos
- no auto-summary
+#
+interface GE1/0/0
+ ip address 10.1.0.1 255.255.255.252
+#
+interface GE1/0/1
+ ip address 10.1.1.1 255.255.255.252
+#
+interface GE1/0/2
+ ip address 10.1.2.1 255.255.255.252
+#
+ospf 1
+ area 0.0.0.0
+  network 1.1.1.1 0.0.0.0
+  network 10.1.0.0 0.0.0.3
+  network 10.1.1.0 0.0.0.3
+  network 10.1.2.0 0.0.0.3
+#
 ```
