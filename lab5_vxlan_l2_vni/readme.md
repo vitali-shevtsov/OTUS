@@ -92,3 +92,41 @@ interface GE1/0/3.1 mode l2
 evpn-overlay enable
 #
 ```
+### 4. Настраиваем BGP EVPN соседство. Leaf1 и Leaf3 настраиваем как BGP EVPN-пиры
+### На примере Spine1
+```
+#
+bgp 100
+ peer 11.11.11.11 as-number 100
+ peer 11.11.11.11 connect-interface LoopBack0
+ peer 33.33.33.33 as-number 100
+ peer 33.33.33.33 connect-interface LoopBack0
+ #
+ ipv4-family unicast
+  peer 11.11.11.11 enable
+  peer 33.33.33.33 enable
+ #
+ l2vpn-family evpn
+  undo policy vpn-target
+  peer 11.11.11.11 enable
+  peer 11.11.11.11 reflect-client
+  peer 33.33.33.33 enable
+  peer 33.33.33.33 reflect-client
+#
+```
+### На примере Leaf1
+
+```
+#
+bgp 100
+ peer 1.1.1.1 as-number 100
+ peer 1.1.1.1 connect-interface LoopBack0
+ #
+ ipv4-family unicast
+  peer 1.1.1.1 enable
+ #
+ l2vpn-family evpn
+  policy vpn-target
+  peer 1.1.1.1 enable
+#
+```
