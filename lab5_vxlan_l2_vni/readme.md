@@ -38,7 +38,7 @@ ospf 1
   network 10.1.2.0 0.0.0.3
 #
 ```
-### После настройки на всех хостах, проверяем связность: 
+### После настройки на всех хостах проверяем связность, пингуем loopback-интерфейсы: 
 ```
 <Spine1>ping 11.11.11.11
   PING 11.11.11.11: 56  data bytes, press CTRL_C to break
@@ -63,5 +63,26 @@ ospf 1
     Reply from 2.2.2.2: bytes=56 Sequence=3 ttl=254 time=6 ms
     Reply from 2.2.2.2: bytes=56 Sequence=4 ttl=254 time=6 ms
     Reply from 2.2.2.2: bytes=56 Sequence=5 ttl=254 time=5 ms
+```
+### 2. Настраиваем пользовательские интерфейсы на Leaf1 и Leaf3, 
+### Leaf1
+```
+#
+bridge-domain 20
+#
+interface GE1/0/3.1 mode l2
+ encapsulation dot1q vid 30
+ bridge-domain 20
+#
+```
+### Leaf3
+```
+#
+bridge-domain 20
+#
+interface GE1/0/3.1 mode l2
+ encapsulation dot1q vid 20
+ bridge-domain 20
+#
 ```
 
