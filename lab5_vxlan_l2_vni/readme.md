@@ -5,3 +5,12 @@
 ## IP-план
 
 ![ipplan_lab5](https://github.com/user-attachments/assets/bbc30c01-93b3-4703-82ba-b9978278c284)
+
+### Исходные данные
+- необходимо обеспечить L2-связность между двумя ВМ (первая находится во VLAN 30, вторая - VLAN 20);
+- в качестве IGP в опорной сети - OSPF;
+- Bridge domain ID - 20;
+- VNI ID - 5020;
+- значение RD для EVPN inst - 12:1 и 31;
+- значение RT для EVPN inst - 2:2;
+- сетевое оборудование - Huawei CE12800.
