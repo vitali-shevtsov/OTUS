@@ -153,3 +153,21 @@ bridge-domain 20
   vpn-target 2:2 import-extcommunity
 #
 ```
+### 6. Настраиваем туннельные интерфейсы NVE на Leaf1 и Leaf3
+
+### Leaf1:
+```
+#
+interface Nve1
+ source 11.11.11.11
+ vni 5020 head-end peer-list protocol bgp
+#
+```
+### Leaf3:
+```
+#
+interface Nve1
+ source 33.33.33.33
+ vni 5020 head-end peer-list protocol bgp
+#
+```
