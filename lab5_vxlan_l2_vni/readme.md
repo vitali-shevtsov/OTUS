@@ -95,7 +95,7 @@ interface GE1/0/3.1 mode l2
 evpn-overlay enable
 #
 ```
-### 4. Настраиваем BGP EVPN соседство. Leaf1 и Leaf3 настраиваем как BGP EVPN-пиры
+### 4. Настраиваем BGP EVPN соседство. Leaf1 и Leaf3 настраиваем как BGP EVPN-пиры c Spine1
 ### На примере Spine1
 ```
 #
