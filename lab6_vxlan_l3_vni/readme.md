@@ -140,6 +140,13 @@ bgp 100 instance evpn1
   peer 3.3.3.3 advertise irb
  ``` 
 
-
+### Проверка
+ ``` 
+<Leaf2>disp vxlan tunnel 
+Number of vxlan tunnel : 1
+Tunnel ID   Source                Destination           State  Type     Uptime
+-----------------------------------------------------------------------------------
+4026531842  3.3.3.3               2.2.2.2               up     dynamic  00:05:05  
+ ``` 
 
 
