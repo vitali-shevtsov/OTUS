@@ -32,10 +32,10 @@ Leaf1, Leaf2, Spine используют AS100 для BGP EVPN.
 ## Настройка
 
 1. Настройка EBGP на примере Spine (на Leaf'ах аналогично):
-'''
+```
 interface LoopBack0
  ip address 1.1.1.1 255.255.255.255
-'''
+```
 
 evpn-overlay enable
 
