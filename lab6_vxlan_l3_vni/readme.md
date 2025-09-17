@@ -142,7 +142,9 @@ bgp 100 instance evpn1
 
 ### Проверка
  ``` 
-<Leaf2>disp vxlan tunnel 
+<Leaf2>disp vxlan tunnel
+ ```
+ ``` 
 Number of vxlan tunnel : 1
 Tunnel ID   Source                Destination           State  Type     Uptime
 -----------------------------------------------------------------------------------
