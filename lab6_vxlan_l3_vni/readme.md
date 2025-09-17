@@ -57,9 +57,23 @@ bgp 100
   peer 10.1.0.2 enable
   peer 10.1.2.2 enable
 ```
-evpn-overlay enable
 
-#
+2. Настройка клиентского порта на Leaf1 (Leaf2 аналогично).
+```
+bridge-domain 10
+interface GE1/0/3.1 mode l2
+ encapsulation dot1q vid 10
+ bridge-domain 10
+```
+3. Включение EVPN в качестве VXLAN control plane
+
+```
+evpn-overlay enable
+```
+
+4. Настройка BGP EVPN на Spine
+
+```
 bgp 100 instance evpn1
  peer 2.2.2.2 as-number 100
  peer 2.2.2.2 connect-interface LoopBack0
@@ -74,7 +88,37 @@ bgp 100 instance evpn1
   peer 3.3.3.3 enable
   peer 3.3.3.3 advertise irb
   peer 3.3.3.3 reflect-client
-  
+```
+
+5. Настройка BGP EVPN на Leaf1 (Leaf2 аналогично)
+```
+bgp 100 instance evpn1
+ peer 1.1.1.1 as-number 100
+ peer 1.1.1.1 connect-interface LoopBack0
+ #
+ l2vpn-family evpn
+  peer 1.1.1.1 enable
+```
+
+6. Настройка VPN- и EVPN-инстансов на Leaf'ах (на примере Leaf1).
+```
+ip vpn-instance vpn1
+vxlan vni 5010
+ ipv4-family
+  route-distinguisher 11:11
+  vpn-target 11:1 export-extcommunity evpn
+  vpn-target 11:1 import-extcommunity evpn
+#
+bridge-domain 10
+ vxlan vni 10
+ evpn
+  route-distinguisher 10:1
+  vpn-target 10:1 export-extcommunity
+  vpn-target 10:1 import-extcommunity
+  vpn-target 11:1 export-extcommunity
+```
+
+  7. Настроить Leaf'ы как Layer 3 VXLAN gateways.
 
 
 evpn-overlay enable
