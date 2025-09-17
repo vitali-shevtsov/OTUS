@@ -21,9 +21,8 @@ Leaf1, Leaf2, Spine используют AS100 для BGP EVPN.
 8. Настроить BGP между Spine и Leaf'ами для анонсов IRB-маршрутов.
 
 ### Начальные данные
- To complete the configuration, you need the following data:
  - VLAN'ы для клиентов 10 и 20
  - BD соответственно 10 и 20
  - VNI 10 и 20
  - VNI 5010 для VPN instance
- l RDs и RTs для EVPN и VPN-инстансов в таблице ниже   
+ - RDs и RTs для EVPN и VPN-инстансов в таблице ниже   
