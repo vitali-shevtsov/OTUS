@@ -153,4 +153,21 @@ Tunnel ID   Source                Destination           State  Type     Uptime
 4026531842  3.3.3.3               2.2.2.2               up     dynamic  00:05:05  
  ``` 
 
+ ```
+<Leaf2>disp ip routing-table vpn-instance vpn1
+ ```
+ ``` 
+Proto: Protocol        Pre: Preference
+Route Flags: R - relay, D - download to fib, T - to vpn-instance, B - black hole route
+------------------------------------------------------------------------------
+Routing Table : vpn1
+         Destinations : 5        Routes : 5         
 
+Destination/Mask    Proto   Pre  Cost        Flags NextHop         Interface
+
+     100.1.1.10/32  IBGP    255  0             RD  2.2.2.2         VXLAN
+      200.1.1.0/24  Direct  0    0             D   200.1.1.1       Vbdif20
+      200.1.1.1/32  Direct  0    0             D   127.0.0.1       Vbdif20
+    200.1.1.255/32  Direct  0    0             D   127.0.0.1       Vbdif20
+255.255.255.255/32  Direct  0    0             D   127.0.0.1       InLoopBack0
+ ``` 
