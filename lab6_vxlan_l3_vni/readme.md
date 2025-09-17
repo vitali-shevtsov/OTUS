@@ -36,9 +36,7 @@ Leaf1, Leaf2, Spine используют AS100 для BGP EVPN.
 interface LoopBack0
  ip address 1.1.1.1 255.255.255.255
 ```
-
-evpn-overlay enable
-
+```
 interface GE1/0/1
  undo portswitch
  undo shutdown
@@ -48,10 +46,8 @@ interface GE1/0/2
  undo portswitch
  undo shutdown
  ip address 10.1.2.1 255.255.255.252
-#
-
-
-
+```
+```
 bgp 100
  peer 10.1.0.2 as-number 200
  peer 10.1.2.2 as-number 300
@@ -60,6 +56,9 @@ bgp 100
   network 1.1.1.1 255.255.255.255
   peer 10.1.0.2 enable
   peer 10.1.2.2 enable
+```
+evpn-overlay enable
+
 #
 bgp 100 instance evpn1
  peer 2.2.2.2 as-number 100
