@@ -28,3 +28,108 @@ Leaf1, Leaf2, Spine используют AS100 для BGP EVPN.
  - RDs и RTs для EVPN и VPN-инстансов в таблице ниже
    
 <img width="372" height="262" alt="rd rt" src="https://github.com/user-attachments/assets/66234e02-3545-45dc-96bb-ecd34e260983" />
+
+## Настройка
+
+1. Настройка EBGP на примере Spine (на Leaf'ах аналогично):
+'''
+interface LoopBack0
+ ip address 1.1.1.1 255.255.255.255
+'''
+
+evpn-overlay enable
+
+interface GE1/0/1
+ undo portswitch
+ undo shutdown
+ ip address 10.1.0.1 255.255.255.252
+#
+interface GE1/0/2
+ undo portswitch
+ undo shutdown
+ ip address 10.1.2.1 255.255.255.252
+#
+
+
+
+bgp 100
+ peer 10.1.0.2 as-number 200
+ peer 10.1.2.2 as-number 300
+ #
+ ipv4-family unicast
+  network 1.1.1.1 255.255.255.255
+  peer 10.1.0.2 enable
+  peer 10.1.2.2 enable
+#
+bgp 100 instance evpn1
+ peer 2.2.2.2 as-number 100
+ peer 2.2.2.2 connect-interface LoopBack0
+ peer 3.3.3.3 as-number 100
+ peer 3.3.3.3 connect-interface LoopBack0
+ #
+ l2vpn-family evpn
+  undo policy vpn-target
+  peer 2.2.2.2 enable
+  peer 2.2.2.2 advertise irb
+  peer 2.2.2.2 reflect-client
+  peer 3.3.3.3 enable
+  peer 3.3.3.3 advertise irb
+  peer 3.3.3.3 reflect-client
+  
+
+
+evpn-overlay enable
+#
+ip vpn-instance vpn1
+ ipv4-family
+  route-distinguisher 11:11
+  vpn-target 11:1 export-extcommunity evpn
+  vpn-target 11:1 import-extcommunity evpn
+ vxlan vni 5010
+
+bridge-domain 10
+ vxlan vni 10
+ evpn
+  route-distinguisher 10:1
+  vpn-target 10:1 export-extcommunity
+  vpn-target 11:1 export-extcommunity
+  vpn-target 10:1 import-extcommunity
+
+ interface Vbdif10
+ ip binding vpn-instance vpn1
+ ip address 100.1.1.1 255.255.255.0
+ vxlan anycast-gateway enable
+ arp collect host enable
+#
+interface GE1/0/1
+ undo portswitch
+ undo shutdown
+ ip address 10.1.0.2 255.255.255.252
+
+ interface GE1/0/3.1 mode l2
+ encapsulation dot1q vid 10
+ bridge-domain 10
+
+ interface LoopBack0
+ ip address 2.2.2.2 255.255.255.255
+#
+interface Nve1
+ source 2.2.2.2
+ vni 10 head-end peer-list protocol bgp
+
+ bgp 200         
+ peer 10.1.0.1 as-number 100
+ #
+ ipv4-family unicast
+  network 2.2.2.2 255.255.255.255
+  peer 10.1.0.1 enable
+#
+bgp 100 instance evpn1
+ peer 1.1.1.1 as-number 100
+ peer 1.1.1.1 connect-interface LoopBack0
+ #
+ l2vpn-family evpn
+  policy vpn-target
+  peer 1.1.1.1 enable
+  peer 1.1.1.1 advertise irb
+#
