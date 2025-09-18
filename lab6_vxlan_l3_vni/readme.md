@@ -85,10 +85,8 @@ bgp 100 instance evpn1
  l2vpn-family evpn
   undo policy vpn-target
   peer 2.2.2.2 enable
-  peer 2.2.2.2 advertise irb
   peer 2.2.2.2 reflect-client
   peer 3.3.3.3 enable
-  peer 3.3.3.3 advertise irb
   peer 3.3.3.3 reflect-client
 ```
 
@@ -134,7 +132,7 @@ interface Vbdif10
  arp collect host enable
 ```
 
-8. Настройка BGP между Spine и Leaf'ами для анонсов IRB-маршрутов (на примере Spine).
+8. Настройка анонсов IRB-маршрутов (на примере Spine) между Spine и Leaf'ами.
 ```
 bgp 100 instance evpn1
  l2vpn-family evpn
