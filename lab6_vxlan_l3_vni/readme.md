@@ -169,6 +169,8 @@ Destination/Mask    Proto   Pre  Cost        Flags NextHop         Interface
     200.1.1.255/32  Direct  0    0             D   127.0.0.1       Vbdif20
 255.255.255.255/32  Direct  0    0             D   127.0.0.1       InLoopBack0
  ``` 
+
+ ### Проверка связности между клиентами
  
  ```
 <client1>disp cur int Vlanif 10
