@@ -169,7 +169,32 @@ Destination/Mask    Proto   Pre  Cost        Flags NextHop         Interface
     200.1.1.255/32  Direct  0    0             D   127.0.0.1       Vbdif20
 255.255.255.255/32  Direct  0    0             D   127.0.0.1       InLoopBack0
  ``` 
+ 
+ ```
+<client1>disp cur int Vlanif 10
+#
+interface Vlanif10
+ ip address 100.1.1.10 255.255.255.0
+ ```
+ ```
+<client1>disp ip routing-table 
+Proto: Protocol        Pre: Preference
+Route Flags: R - relay, D - download to fib, T - to vpn-instance, B - black hole route
+------------------------------------------------------------------------------
+Routing Table : _public_
+         Destinations : 8        Routes : 8         
 
+Destination/Mask    Proto   Pre  Cost        Flags NextHop         Interface
+
+        0.0.0.0/0   Static  60   0             RD  100.1.1.1       Vlanif10
+      100.1.1.0/24  Direct  0    0             D   100.1.1.10      Vlanif10
+     100.1.1.10/32  Direct  0    0             D   127.0.0.1       Vlanif10
+    100.1.1.255/32  Direct  0    0             D   127.0.0.1       Vlanif10
+      127.0.0.0/8   Direct  0    0             D   127.0.0.1       InLoopBack0
+      127.0.0.1/32  Direct  0    0             D   127.0.0.1       InLoopBack0
+127.255.255.255/32  Direct  0    0             D   127.0.0.1       InLoopBack0
+255.255.255.255/32  Direct  0    0             D   127.0.0.1       InLoopBack0
+ ```
  ``` 
 <client1>ping -c 5 200.1.1.10    
   PING 200.1.1.10: 56  data bytes, press CTRL_C to break
