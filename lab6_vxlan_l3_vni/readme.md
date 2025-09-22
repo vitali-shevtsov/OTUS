@@ -169,3 +169,19 @@ Destination/Mask    Proto   Pre  Cost        Flags NextHop         Interface
     200.1.1.255/32  Direct  0    0             D   127.0.0.1       Vbdif20
 255.255.255.255/32  Direct  0    0             D   127.0.0.1       InLoopBack0
  ``` 
+
+ ``` 
+<client1>ping -c 5 200.1.1.10    
+  PING 200.1.1.10: 56  data bytes, press CTRL_C to break
+    Reply from 200.1.1.10: bytes=56 Sequence=1 ttl=253 time=11 ms
+    Reply from 200.1.1.10: bytes=56 Sequence=2 ttl=253 time=12 ms
+    Reply from 200.1.1.10: bytes=56 Sequence=3 ttl=253 time=8 ms
+    Reply from 200.1.1.10: bytes=56 Sequence=4 ttl=253 time=10 ms
+    Reply from 200.1.1.10: bytes=56 Sequence=5 ttl=253 time=9 ms
+
+  --- 200.1.1.10 ping statistics ---
+    5 packet(s) transmitted
+    5 packet(s) received
+    0.00% packet loss
+    round-trip min/avg/max = 8/10/12 ms
+ ``` 
