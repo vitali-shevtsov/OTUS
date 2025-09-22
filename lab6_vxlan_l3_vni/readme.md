@@ -171,6 +171,8 @@ Destination/Mask    Proto   Pre  Cost        Flags NextHop         Interface
  ``` 
 
  ### Проверка связности между клиентами
+
+ SRV1:
  
  ```
 <client1>disp cur int Vlanif 10
