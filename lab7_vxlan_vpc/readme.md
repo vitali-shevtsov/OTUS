@@ -179,9 +179,8 @@ bridge-domain 10
   vpn-target 11:1 export-extcommunity
 ```
 
-  9. Настройка Leaf'ов как Layer 3 VXLAN gateways (на примере Leaf1), Leaf1 и Leaf3 -  dual-active gateways. Для Leaf2 MAC-адрес не настраиваем.
+  9. Настройка Leaf'ов как Layer 3 VXLAN gateways (на примере Leaf1), Leaf1 и Leaf3 -  dual-active gateways. Для Leaf2 MAC-адрес не настраиваем. На Leaf1 и Leaf3 IP-адрес и МАС-адрес на VBDIF одинаковые.
 
-На Leaf1 и Leaf3 IP-адрес и МАС-адрес на VBDIF одинаковые.
 ```
 interface Nve1
  source 24.24.24.24
@@ -212,7 +211,7 @@ bgp 100 instance evpn1
 Number of vxlan tunnel : 1
 Tunnel ID   Source                Destination           State  Type     Uptime
 -----------------------------------------------------------------------------------
-4026531842  3.3.3.3               2.2.2.2               up     dynamic  00:05:05  
+4026531843  3.3.3.3               2.2.2.2               up     dynamic  01:07:28  
  ``` 
 
  ```
@@ -236,16 +235,16 @@ Destination/Mask    Proto   Pre  Cost        Flags NextHop         Interface
 
  ### Проверка связности между клиентами
 
- SRV1:
+ SRV2:
  
  ```
-<client1>disp cur int Vlanif 10
+<client2>disp cur int Vlanif 20
 #
 interface Vlanif10
- ip address 100.1.1.10 255.255.255.0
+ ip address 200.1.1.10 255.255.255.0
  ```
  ```
-<client1>disp ip routing-table 
+<client2>disp ip routing-table 
 Proto: Protocol        Pre: Preference
 Route Flags: R - relay, D - download to fib, T - to vpn-instance, B - black hole route
 ------------------------------------------------------------------------------
@@ -254,28 +253,28 @@ Routing Table : _public_
 
 Destination/Mask    Proto   Pre  Cost        Flags NextHop         Interface
 
-        0.0.0.0/0   Static  60   0             RD  100.1.1.1       Vlanif10
-      100.1.1.0/24  Direct  0    0             D   100.1.1.10      Vlanif10
-     100.1.1.10/32  Direct  0    0             D   127.0.0.1       Vlanif10
-    100.1.1.255/32  Direct  0    0             D   127.0.0.1       Vlanif10
+        0.0.0.0/0   Static  60   0             RD  200.1.1.1       Vlanif20
       127.0.0.0/8   Direct  0    0             D   127.0.0.1       InLoopBack0
       127.0.0.1/32  Direct  0    0             D   127.0.0.1       InLoopBack0
 127.255.255.255/32  Direct  0    0             D   127.0.0.1       InLoopBack0
+      200.1.1.0/24  Direct  0    0             D   200.1.1.10      Vlanif20
+     200.1.1.10/32  Direct  0    0             D   127.0.0.1       Vlanif20
+    200.1.1.255/32  Direct  0    0             D   127.0.0.1       Vlanif20
 255.255.255.255/32  Direct  0    0             D   127.0.0.1       InLoopBack0
  ```
  ``` 
-<client1>ping -c 5 200.1.1.10    
-  PING 200.1.1.10: 56  data bytes, press CTRL_C to break
-    Reply from 200.1.1.10: bytes=56 Sequence=1 ttl=253 time=11 ms
-    Reply from 200.1.1.10: bytes=56 Sequence=2 ttl=253 time=12 ms
-    Reply from 200.1.1.10: bytes=56 Sequence=3 ttl=253 time=8 ms
-    Reply from 200.1.1.10: bytes=56 Sequence=4 ttl=253 time=10 ms
-    Reply from 200.1.1.10: bytes=56 Sequence=5 ttl=253 time=9 ms
+<client2>ping -c 5 100.1.1.10
+  PING 100.1.1.10: 56  data bytes, press CTRL_C to break
+    Reply from 100.1.1.10: bytes=56 Sequence=1 ttl=253 time=12 ms
+    Reply from 100.1.1.10: bytes=56 Sequence=2 ttl=253 time=6 ms
+    Reply from 100.1.1.10: bytes=56 Sequence=3 ttl=253 time=8 ms
+    Reply from 100.1.1.10: bytes=56 Sequence=4 ttl=253 time=8 ms
+    Reply from 100.1.1.10: bytes=56 Sequence=5 ttl=253 time=7 ms
 
-  --- 200.1.1.10 ping statistics ---
+  --- 100.1.1.10 ping statistics ---
     5 packet(s) transmitted
     5 packet(s) received
     0.00% packet loss
-    round-trip min/avg/max = 8/10/12 ms
- ``` 
+    round-trip min/avg/max = 6/8/12 ms
+  ``` 
 
