@@ -179,10 +179,13 @@ bridge-domain 10
   vpn-target 11:1 export-extcommunity
 ```
 
-  9. Настройка Leaf'ов как Layer 3 VXLAN gateways (на примере Leaf1).
+  9. Настройка Leaf'ов как Layer 3 VXLAN gateways (на примере Leaf1), Leaf1 и Leaf3 -  dual-active gateways. Для Leaf2 MAC-адрес не настраиваем.
+
+На Leaf1 и Leaf3 IP-адрес и МАС-адрес на VBDIF одинаковые.
 ```
 interface Nve1
- source 2.2.2.2
+ source 24.24.24.24
+ mac-address 0000-5e00-0101
  vni 10 head-end peer-list protocol bgp
 ```
 ```
@@ -193,7 +196,7 @@ interface Vbdif10
  arp collect host enable
 ```
 
-8. Настройка анонсов IRB-маршрутов (на примере Spine) между Spine и Leaf'ами.
+10. Настройка анонсов IRB-маршрутов (на примере Spine) между Spine и Leaf'ами.
 ```
 bgp 100 instance evpn1
  l2vpn-family evpn
