@@ -202,6 +202,7 @@ bgp 100 instance evpn1
  l2vpn-family evpn
   peer 2.2.2.2 advertise irb
   peer 3.3.3.3 advertise irb
+  peer 4.4.4.4 advertise irb
  ```
 
 11. Настройка агрегированного канала на стороне SRV1 (client1).
