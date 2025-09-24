@@ -239,7 +239,7 @@ Tunnel ID   Source                Destination           State  Type     Uptime
  ``` 
 
  ```
-<Leaf2>disp ip routing-table vpn-instance vpn1
+<Leaf1>disp ip routing-table vpn-instance vpn1
  ```
  ``` 
 Proto: Protocol        Pre: Preference
@@ -250,10 +250,10 @@ Routing Table : vpn1
 
 Destination/Mask    Proto   Pre  Cost        Flags NextHop         Interface
 
-     100.1.1.10/32  IBGP    255  0             RD  2.2.2.2         VXLAN
-      200.1.1.0/24  Direct  0    0             D   200.1.1.1       Vbdif20
-      200.1.1.1/32  Direct  0    0             D   127.0.0.1       Vbdif20
-    200.1.1.255/32  Direct  0    0             D   127.0.0.1       Vbdif20
+      100.1.1.0/24  Direct  0    0             D   100.1.1.1       Vbdif10
+      100.1.1.1/32  Direct  0    0             D   127.0.0.1       Vbdif10
+    100.1.1.255/32  Direct  0    0             D   127.0.0.1       Vbdif10
+     200.1.1.10/32  IBGP    255  0             RD  3.3.3.3         VXLAN
 255.255.255.255/32  Direct  0    0             D   127.0.0.1       InLoopBack0
  ``` 
 
