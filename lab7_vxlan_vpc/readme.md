@@ -1,16 +1,13 @@
 ## Топология и адресация для настройки VxLAN EVPN Multihoming
 
-<img width="648" height="422" alt="lab7_topo" src="https://github.com/user-attachments/assets/84db1d35-0a12-4807-93cb-45767e48a364" />
-
-
-Для примера используется минимальная топология с одним Spine и парой Leaf'ов. 
+<img width="648" height="422" alt="lab7_topo" src="https://github.com/user-attachments/assets/ddd3a343-9e76-46ec-a5f7-fe3e04372494" />
 
 Оборудование - Huawei CE12800.
 
 SRV1 и SRV2 находятся в разных сетях, и чтобы их соединить настроим distributed VXLAN gateways. 
 
-Leaf1 находится в AS200, Leaf2 - AS300, Spine - AS100. 
-Leaf1, Leaf2, Spine используют AS100 для BGP EVPN.
+Leaf1 и Leaf3 находятся в AS200, Leaf2 - AS300, Spine - AS100. 
+Leaf1, Leaf2, Leaf3 и Spine используют AS100 для BGP EVPN.
 
 ### План работы
 
