@@ -2,6 +2,10 @@
 
 <img width="648" height="422" alt="lab7_topo" src="https://github.com/user-attachments/assets/ddd3a343-9e76-46ec-a5f7-fe3e04372494" />
 
+<img width="648" height="422" alt="lab7_topo" src="https://github.com/user-attachments/assets/5418ed4c-928f-4fee-978b-6012ec60f28e" />
+
+
+
 Оборудование - Huawei CE12800.
 
 SRV1 и SRV2 находятся в разных сетях, и чтобы их соединить настроим distributed VXLAN gateways. 
@@ -100,6 +104,10 @@ trunkport GE1/0/3
 dfs-group 1
 source ip 2.2.2.2
 ```
+```
+dfs-group 1
+source ip 4.4.4.4
+```
 Настроить peer link между Leaf1 и Leaf3:
 ```
 interface eth-trunk 1
@@ -113,20 +121,20 @@ interface eth-trunk 10
 dfs-group 1 m-lag 1
  ```
 
-2. Настройка клиентского порта на Leaf1 (Leaf2 аналогично).
+4. Настройка клиентского порта на примере Leaf1.
 ```
 bridge-domain 10
-interface GE1/0/3.1 mode l2
+interface eth-trunk 10.1 mode l2
  encapsulation dot1q vid 10
  bridge-domain 10
 ```
-3. Включение EVPN в качестве VXLAN control plane
+5. Включение EVPN в качестве VXLAN control plane
 
 ```
 evpn-overlay enable
 ```
 
-4. Настройка BGP EVPN на Spine
+6. Настройка BGP EVPN на Spine
 
 ```
 bgp 100 instance evpn1
@@ -134,6 +142,8 @@ bgp 100 instance evpn1
  peer 2.2.2.2 connect-interface LoopBack0
  peer 3.3.3.3 as-number 100
  peer 3.3.3.3 connect-interface LoopBack0
+ peer 4.4.4.4 as-number 100
+ peer 4.4.4.4 connect-interface LoopBack0
  #
  l2vpn-family evpn
   undo policy vpn-target
@@ -141,9 +151,11 @@ bgp 100 instance evpn1
   peer 2.2.2.2 reflect-client
   peer 3.3.3.3 enable
   peer 3.3.3.3 reflect-client
+  peer 4.4.4.4 enable
+  peer 4.4.4.4 reflect-client
 ```
 
-5. Настройка BGP EVPN на Leaf1 (Leaf2 аналогично)
+7. Настройка BGP EVPN на Leaf1 (Leaf2, Leaf3 аналогично)
 ```
 bgp 100 instance evpn1
  peer 1.1.1.1 as-number 100
@@ -153,7 +165,7 @@ bgp 100 instance evpn1
   peer 1.1.1.1 enable
 ```
 
-6. Настройка VPN- и EVPN-инстансов на Leaf'ах (на примере Leaf1).
+8. Настройка VPN- и EVPN-инстансов на Leaf'ах (на примере Leaf1).
 ```
 ip vpn-instance vpn1
 vxlan vni 5010
@@ -171,7 +183,7 @@ bridge-domain 10
   vpn-target 11:1 export-extcommunity
 ```
 
-  7. Настройка Leaf'ов как Layer 3 VXLAN gateways (на примере Leaf1).
+  9. Настройка Leaf'ов как Layer 3 VXLAN gateways (на примере Leaf1).
 ```
 interface Nve1
  source 2.2.2.2
