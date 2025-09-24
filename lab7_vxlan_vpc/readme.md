@@ -1,10 +1,6 @@
 ## Топология и адресация для настройки VxLAN EVPN Multihoming
 
-<img width="648" height="422" alt="lab7_topo" src="https://github.com/user-attachments/assets/ddd3a343-9e76-46ec-a5f7-fe3e04372494" />
-
 <img width="648" height="422" alt="lab7_topo" src="https://github.com/user-attachments/assets/5418ed4c-928f-4fee-978b-6012ec60f28e" />
-
-
 
 Оборудование - Huawei CE12800.
 
