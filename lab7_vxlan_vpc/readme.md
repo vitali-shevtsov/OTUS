@@ -1,4 +1,4 @@
-## Топология для настройки VxLAN EVPN для L3
+## Топология для настройки VxLAN EVPN Multihoming
 
 <img width="648" height="422" alt="lab7_topo" src="https://github.com/user-attachments/assets/84db1d35-0a12-4807-93cb-45767e48a364" />
 
