@@ -21,6 +21,7 @@ Leaf1, Leaf2, Leaf3 и Spine используют AS100 для BGP EVPN.
 8. Настроить VPN- и EVPN-инстансы на Leaf'ах.
 9. Настроить Leaf'ы как Layer 3 VXLAN gateways.
 10. Настроить BGP между Spine и Leaf'ами для анонсов IRB-маршрутов.
+11. Настройка агрегированного канала на стороне SRV1 (client1).
  
 
 ### Начальные данные
@@ -201,7 +202,30 @@ bgp 100 instance evpn1
  l2vpn-family evpn
   peer 2.2.2.2 advertise irb
   peer 3.3.3.3 advertise irb
- ``` 
+ ```
+
+11. Настройка агрегированного канала на стороне SRV1 (client1).
+
+ ```
+interface Eth-Trunk10
+ port link-type trunk
+ port trunk allow-pass vlan 10
+ mode lacp-static    
+ ```
+```
+interface GE1/0/3
+ undo shutdown
+ eth-trunk 10
+```
+```
+interface GE1/0/6
+ undo shutdown
+ eth-trunk 10
+```
+```
+interface Vlanif10
+ ip address 100.1.1.10 255.255.255.0
+```
 
 ### Проверка
  ``` 
