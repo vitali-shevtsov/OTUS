@@ -30,7 +30,8 @@ Leaf1, Leaf2, Leaf3 и Spine используют AS100 для BGP EVPN.
  - VNI 5010 для VPN instance
  - RDs и RTs для EVPN и VPN-инстансов в таблице ниже
    
-<img width="372" height="262" alt="rd rt" src="https://github.com/user-attachments/assets/66234e02-3545-45dc-96bb-ecd34e260983" />
+<img width="372" height="383" alt="rd rt lab7" src="https://github.com/user-attachments/assets/e05bbfcc-25bd-496e-a397-7e3e505a4275" />
+
 
 ## Настройка
 
