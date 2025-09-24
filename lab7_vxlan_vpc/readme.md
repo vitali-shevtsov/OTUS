@@ -11,14 +11,17 @@ Leaf1, Leaf2, Leaf3 и Spine используют AS100 для BGP EVPN.
 
 ### План работы
 
-1. Настроить eBGP между Spine и Leaf1 и между Spine и Leaf2.
-2. Настроить клиентские порты на Leaf'ах.
-3. Настроить EVPN в качестве VXLAN control plane.
-4. Настроить Spine как BGP EVPN-пир для Leaf'ов.
-5. Настроить Leaf'ы как BGP EVPN-пиры - RR-клиенты.
-6. Настроить VPN- и EVPN-инстансы на Leaf'ах.
-7. Настроить Leaf'ы как Layer 3 VXLAN gateways.
-8. Настроить BGP между Spine и Leaf'ами для анонсов IRB-маршрутов.
+1. Настроить eBGP между Spine и Leaf'ами.
+2. Настроить Leaf1 и Leaf3 как Root bridge; Bridge ID на обоих устройствах одинаковый.
+3. Настоить M-LAG между Leaf1 и Leaf3.
+4. Настроить клиентские порты на Leaf'ах. 
+5. Настроить EVPN в качестве VXLAN control plane.
+6. Настроить Spine как BGP EVPN-пир для Leaf'ов.
+7. Настроить Leaf'ы как BGP EVPN-пиры - RR-клиенты.
+8. Настроить VPN- и EVPN-инстансы на Leaf'ах.
+9. Настроить Leaf'ы как Layer 3 VXLAN gateways.
+10. Настроить BGP между Spine и Leaf'ами для анонсов IRB-маршрутов.
+ 
 
 ### Начальные данные
  - VLAN'ы для клиентов 10 и 20
