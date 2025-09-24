@@ -240,7 +240,7 @@ Destination/Mask    Proto   Pre  Cost        Flags NextHop         Interface
  ```
 <client2>disp cur int Vlanif 20
 #
-interface Vlanif10
+interface Vlanif20
  ip address 200.1.1.10 255.255.255.0
  ```
  ```
