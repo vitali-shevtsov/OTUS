@@ -70,6 +70,49 @@ peer 10.1.0.1 allow-as-loop
 ```
 peer 10.1.3.1 allow-as-loop
 ```
+
+2. Настройка Leaf1 и Leaf3 как Root bridge; Bridge ID на обоих устройствах одинаковый.
+
+```
+stp root primary
+stp bridge-address 0039-0039-0039
+interface eth-trunk 10
+stp edged-port enable
+```
+
+3. Настойка M-LAG между Leaf1 и Leaf3.
+
+Создать Eth-Trunk в режиме LACP на Leaf1 и добавить в него физические интерфейсы. Зеркально настроить Leaf3.
+```
+interface eth-trunk 1
+mode lacp-static
+trunkport GE1/0/8
+trunkport GE1/0/9
+```
+```
+interface eth-trunk 10
+mode lacp-static
+trunkport GE1/0/3
+```
+
+Настройка Dynamic Fabric Service (DFS) на Leaf1 и Leaf3:
+```
+dfs-group 1
+source ip 2.2.2.2
+```
+Настроить peer link между Leaf1 и Leaf3:
+```
+interface eth-trunk 1
+undo stp enable
+peer-link 1
+```
+Связать eth-trunk 10 с DFS-группой на Leaf1 и Leaf3:
+
+ ```
+interface eth-trunk 10
+dfs-group 1 m-lag 1
+ ```
+
 2. Настройка клиентского порта на Leaf1 (Leaf2 аналогично).
 ```
 bridge-domain 10
