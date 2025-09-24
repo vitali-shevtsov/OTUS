@@ -229,13 +229,13 @@ interface Vlanif10
 
 ### Проверка
  ``` 
-<Leaf2>disp vxlan tunnel
+<Leaf1>disp vxlan tunnel
  ```
- ``` 
+ ```
 Number of vxlan tunnel : 1
 Tunnel ID   Source                Destination           State  Type     Uptime
 -----------------------------------------------------------------------------------
-4026531843  3.3.3.3               2.2.2.2               up     dynamic  01:07:28  
+4026531841  2.2.2.2               3.3.3.3               up     dynamic  0060h52m  
  ``` 
 
  ```
