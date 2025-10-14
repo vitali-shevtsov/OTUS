@@ -49,8 +49,9 @@
 
 ### Таблица инстансов BGP EVPN
 
-![project evpn inst](https://github.com/user-attachments/assets/b9e4540c-7b31-4162-9688-fb64990801bd)
+![project evpn inst](https://github.com/user-attachments/assets/7df4eb99-cedb-4f8f-b61d-edccf7b532de)
 
 ### Таблица VPN-инстансов
 
-![project vpn inst](https://github.com/user-attachments/assets/b70e3135-2424-40e4-9095-24ffbfe7d179)
+![project vpn inst](https://github.com/user-attachments/assets/af62acbb-e6a3-4ef0-9c2e-e8f50f28dca7)
+
