@@ -47,3 +47,10 @@
 
  ![project ip plan](https://github.com/user-attachments/assets/8f05db71-d565-4ea9-a806-a9a24f6bc39b)
 
+### Таблица инстансов BGP EVPN
+
+![project evpn inst](https://github.com/user-attachments/assets/b9e4540c-7b31-4162-9688-fb64990801bd)
+
+### Таблица VPN-инстансов
+
+![project vpn inst](https://github.com/user-attachments/assets/b70e3135-2424-40e4-9095-24ffbfe7d179)
