@@ -75,4 +75,14 @@ interface GE1/0/3
  undo portswitch
  undo shutdown
  ip address 10.0.6.1 255.255.255.0
+#
+interface LoopBack0
+ ip address 1.1.1.1 255.255.255.255
+#
+ospf 1
+ area 0.0.0.0
+  network 1.1.1.1 0.0.0.0
+  network 10.0.1.0 0.0.0.3
+  network 10.0.2.0 0.0.0.3
+  network 10.0.6.0 0.0.0.255
 ```
