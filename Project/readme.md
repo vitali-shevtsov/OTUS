@@ -42,3 +42,8 @@
 
 1.	Настройка соседства BGP EVPN между VTEP1 и VTEP6
 2.	Настройка регенерации EVPN-маршрутов на VTEP1 и VTEP6
+
+### IP-план
+
+ ![project ip plan](https://github.com/user-attachments/assets/8f05db71-d565-4ea9-a806-a9a24f6bc39b)
+
