@@ -18,6 +18,8 @@
 
 <img width="854" height="496" alt="image" src="https://github.com/user-attachments/assets/c52e64a9-6b3e-4962-bd83-1a68e9e7d793" />
 
+### Схема VxLAN-туннелей
+
 Логическая связность между сетевыми хостами будет реализована посредством VxLAN-туннелей следующим образом:
 
 <img width="926" height="568" alt="image" src="https://github.com/user-attachments/assets/2976a752-5fc0-4f96-bd93-8df1526f3f6c" />
