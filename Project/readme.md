@@ -59,3 +59,20 @@
 
 ### 1. Настройка адресации и протокола маршрутизации для underlay-сети
 На примере VTEP1 (аналогично для остальных сетевых хостов):
+
+```
+interface GE1/0/1
+ undo portswitch
+ undo shutdown
+ ip address 10.0.1.2 255.255.255.252
+#
+interface GE1/0/2
+ undo portswitch
+ undo shutdown
+ ip address 10.0.2.1 255.255.255.252
+#
+interface GE1/0/3
+ undo portswitch
+ undo shutdown
+ ip address 10.0.6.1 255.255.255.0
+```
