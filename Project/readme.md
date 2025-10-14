@@ -55,3 +55,7 @@
 
 ![project vpn inst](https://github.com/user-attachments/assets/af62acbb-e6a3-4ef0-9c2e-e8f50f28dca7)
 
+## Настройка
+
+### 1. Настройка адресации и протокола маршрутизации для underlay-сети
+### На примере VTEP1 (аналогично для остальных сетевых хостов):
