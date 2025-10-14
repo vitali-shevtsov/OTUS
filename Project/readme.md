@@ -12,6 +12,8 @@
 
 <img width="894" height="456" alt="image" src="https://github.com/user-attachments/assets/360658fe-be42-42a1-be6d-3058ebf22de3" />
 
+### Физическая топология
+
 Для реализации проекта собрана минимальная физическая топология, где каждое устройство выполняет функции VTEP. Все клиенты (SRV-1, SRV-2, SRV-3, SRV-4) находятся в разных подсетях, поэтому нужно обеспечить полную L3-связность между ними:
 
 <img width="854" height="496" alt="image" src="https://github.com/user-attachments/assets/c52e64a9-6b3e-4962-bd83-1a68e9e7d793" />
