@@ -36,7 +36,7 @@
 3.	Настройка EVPN-инстансов на VTEP2, VTEP3, VTEP7, VTEP8 и их привязка к BD
 4.	Настройка VPN-инстансов на каждом VTEP и их привязка к соответствующим интерфейсам VBDIF на VTEP2, VTEP3, VTEP7, VTEP8.
 5.	Установление отношений соседства BGP EVPN между VTEP1 и VTEP2, VTEP1 и VTEP3, а также между VTEP6 и VTEP7, VTEP6 и VTEP8
-6.	Настройка VTEP1 в качестве RR для VTEP2 и VTEP3. Настройка VTEP6 в качестве RR для VTEP7 и VTEP8. Это позволит устанавливать соседства BGP EVPN между VTEP2 и VTEP3, и между VTEP7 и VTEP8
+6.	Настройка VTEP1 в качестве RR для VTEP2 и VTEP3. Настройка VTEP6 в качестве RR для VTEP7 и VTEP8. 
 7.	Настройка IP-адресов назначения для VxLAN-туннелей на VTEP2, VTEP3, VTEP7 и VTEP8
 8.	Настройка distributed VXLAN gateway на VTEP2, VTEP3, VTEP7 и VTEP8
 9.	Настройка default route на VTEP1 and VTEP6. Каждый из VTEP’ов обеспечивает связность в пределах своей AS, а также между AS.
@@ -181,5 +181,33 @@ bgp 100
   import-route direct
   advertise l2vpn evpn
  #
- 
+```
+
+### 6.	Настройка VTEP1 в качестве RR для VTEP2 и VTEP3. Настройка VTEP6 в качестве RR для VTEP7 и VTEP8. 
+
+Настраиваем VTEP1 (и VTEP6)  в качестве RR, чтобы иметь возможность устанавливать соседства BGP EVPN между VTEP2 и VTEP3, и между VTEP7 и VTEP8
+
+```
+bgp 100
+ l2vpn-family evpn
+  undo policy vpn-target
+  peer 2.2.2.2 reflect-client
+  peer 3.3.3.3 reflect-client
+```
+
+### 7.	Настройка IP-адресов назначения для VxLAN-туннелей на VTEP2, VTEP3, VTEP7 и VTEP8
+
+Настройка на VTEP1 (аналогично для VTEP6):
+
+```
+interface Nve1
+ source 1.1.1.1
+```
+
+Настройка на VTEP2 (аналогично для VTEP3, VTEP7, VTEP8):
+
+```
+interface Nve1
+ source 2.2.2.2
+ vni 10 head-end peer-list protocol bgp
 ```
