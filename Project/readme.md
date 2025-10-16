@@ -54,7 +54,6 @@
 
 ![project evpn inst~](https://github.com/user-attachments/assets/e9d2fb0d-0df9-4516-88b7-14460593bc54)
 
-![project evpn inst](https://github.com/user-attachments/assets/7df4eb99-cedb-4f8f-b61d-edccf7b532de)
 
 ### Таблица VPN-инстансов
 
