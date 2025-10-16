@@ -146,3 +146,25 @@ ip vpn-instance vpn1
 interface Vbdif10
  ip binding vpn-instance vpn1
 ```
+### 5. Установление отношений соседства BGP EVPN между VTEP1 и VTEP2, VTEP1 и VTEP3, а также между VTEP6 и VTEP7, VTEP6 и VTEP8
+Настройка на VTEP1 (аналогично для VTEP6):
+```
+bgp 100
+ router-id 1.1.1.1
+ peer 2.2.2.2 as-number 100
+ peer 2.2.2.2 connect-interface LoopBack0
+ peer 3.3.3.3 as-number 100
+ peer 3.3.3.3 connect-interface LoopBack0
+ #
+ l2vpn-family evpn
+  undo policy vpn-target
+  peer 2.2.2.2 enable
+  peer 2.2.2.2 advertise irb
+  peer 3.3.3.3 enable
+  peer 3.3.3.3 advertise irb
+ #
+ ipv4-family vpn-instance vpn1
+  import-route direct
+  advertise l2vpn evpn
+```
+
