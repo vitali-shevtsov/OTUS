@@ -37,7 +37,7 @@
 4.	Настройка VPN-инстансов на каждом VTEP и их привязка к соответствующим интерфейсам VBDIF на VTEP2, VTEP3, VTEP7, VTEP8.
 5.	Установление отношений соседства BGP EVPN между VTEP1 и VTEP2, VTEP1 и VTEP3, а также между VTEP6 и VTEP7, VTEP6 и VTEP8
 6.	Настройка VTEP1 в качестве RR для VTEP2 и VTEP3. Настройка VTEP6 в качестве RR для VTEP7 и VTEP8. 
-7.	Настройка IP-адресов назначения для VxLAN-туннелей на VTEP2, VTEP3, VTEP7 и VTEP8
+7.	Настройка IP-адресов назначения для VxLAN-туннелей
 8.	Настройка distributed VXLAN gateway на VTEP2, VTEP3, VTEP7 и VTEP8
 9.	Настройка default route на VTEP1 and VTEP6. Каждый из VTEP’ов обеспечивает связность в пределах своей AS, а также между AS.
 
