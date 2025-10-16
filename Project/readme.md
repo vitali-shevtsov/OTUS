@@ -167,4 +167,22 @@ bgp 100
   import-route direct
   advertise l2vpn evpn
 ```
-
+Настройка на VTEP2 (аналогично для VTEP3, VTEP7, VTEP8):
+```
+bgp 100
+ router-id 2.2.2.2
+ peer 1.1.1.1 as-number 100
+ peer 1.1.1.1 connect-interface LoopBack0
+ #
+ ipv4-family unicast
+  peer 1.1.1.1 enable
+ #
+ ipv4-family vpn-instance vpn1
+  import-route direct
+  advertise l2vpn evpn
+ #
+ l2vpn-family evpn
+  policy vpn-target
+  peer 1.1.1.1 enable
+  peer 1.1.1.1 advertise irb
+```
