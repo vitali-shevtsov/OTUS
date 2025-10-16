@@ -24,7 +24,7 @@
 
 ![Project topo](https://github.com/user-attachments/assets/c56e9de0-496f-4ce1-81eb-a68f0018b2ef)
 
-<img width="926" height="568" alt="image" src="https://github.com/user-attachments/assets/2976a752-5fc0-4f96-bd93-8df1526f3f6c" />
+
 
 ### Последовательность настройки
 
