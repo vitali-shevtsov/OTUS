@@ -172,8 +172,8 @@ bgp 100
  router-id 2.2.2.2
  peer 1.1.1.1 as-number 100
  peer 1.1.1.1 connect-interface LoopBack0
- #
-l2vpn-family evpn
+#
+ l2vpn-family evpn
   peer 1.1.1.1 enable
   peer 1.1.1.1 advertise irb
 #
