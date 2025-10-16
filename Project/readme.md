@@ -174,15 +174,14 @@ bgp 100
  peer 1.1.1.1 as-number 100
  peer 1.1.1.1 connect-interface LoopBack0
  #
- ipv4-family unicast
+l2vpn-family evpn
+  policy vpn-target
   peer 1.1.1.1 enable
- #
+  peer 1.1.1.1 advertise irb
+#
  ipv4-family vpn-instance vpn1
   import-route direct
   advertise l2vpn evpn
  #
- l2vpn-family evpn
-  policy vpn-target
-  peer 1.1.1.1 enable
-  peer 1.1.1.1 advertise irb
+ 
 ```
