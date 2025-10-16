@@ -106,7 +106,7 @@ interface GE1/0/2.1 mode l2
 
 ```
 
-### 3.	Настройка EVPN-инстансов на VTEP2, VTEP3, VTEP7, VTEP8 и их привязка к BD
+### 3.	Настройка EVPN на VTEP2, VTEP3, VTEP7, VTEP8 и их привязка к BD
 
 На примере VTEP2 (аналогично для VTEP3, VTEP7, VTEP8):
 ```
