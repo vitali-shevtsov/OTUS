@@ -157,7 +157,6 @@ bgp 100
  peer 3.3.3.3 connect-interface LoopBack0
  #
  l2vpn-family evpn
-  undo policy vpn-target
   peer 2.2.2.2 enable
   peer 2.2.2.2 advertise irb
   peer 3.3.3.3 enable
@@ -175,7 +174,6 @@ bgp 100
  peer 1.1.1.1 connect-interface LoopBack0
  #
 l2vpn-family evpn
-  policy vpn-target
   peer 1.1.1.1 enable
   peer 1.1.1.1 advertise irb
 #
