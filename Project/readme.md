@@ -92,3 +92,15 @@ ospf 1
 
 ### 2. Настройка клиентских портов на VTEP2, VTEP3, VTEP7, VTEP8
 
+На примере VTEP2 (аналогично для VTEP3, VTEP7, VTEP8):
+```
+bridge-domain 10
+#
+interface GE1/0/2
+ port link-type trunk
+#
+interface GE1/0/2.1 mode l2
+ encapsulation dot1q vid 10
+ bridge-domain 10
+
+```
