@@ -104,3 +104,16 @@ interface GE1/0/2.1 mode l2
  bridge-domain 10
 
 ```
+
+### 3.	Настройка EVPN-инстансов на VTEP2, VTEP3, VTEP7, VTEP8 и их привязка к BD
+
+На примере VTEP2 (аналогично для VTEP3, VTEP7, VTEP8):
+```
+bridge-domain 10
+ vxlan vni 10
+ evpn
+  route-distinguisher 2:10
+  vpn-target 10:1 export-extcommunity
+  vpn-target 1:100 export-extcommunity
+  vpn-target 10:1 import-extcommunity
+```
