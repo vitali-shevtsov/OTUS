@@ -118,3 +118,31 @@ bridge-domain 10
   vpn-target 1:100 export-extcommunity
   vpn-target 10:1 import-extcommunity
 ```
+
+### 4.	Настройка VPN-инстансов на каждом VTEP и их привязка к соответствующим интерфейсам VBDIF на VTEP2, VTEP3, VTEP7, VTEP8.
+Настройка на VTEP1 (аналогично для VTEP6):
+
+```
+ip vpn-instance vpn1
+ ipv4-family
+  route-distinguisher 1:100
+  vpn-target 1:100 export-extcommunity evpn
+  vpn-target 10:100 export-extcommunity evpn
+  vpn-target 1:100 import-extcommunity evpn
+  vpn-target 10:100 import-extcommunity evpn
+ vxlan vni 100
+```
+
+На примере VTEP2 (аналогично для VTEP3, VTEP7, VTEP8):
+
+```
+ip vpn-instance vpn1
+ ipv4-family
+  route-distinguisher 2:100
+  vpn-target 1:100 export-extcommunity evpn
+  vpn-target 1:100 import-extcommunity evpn
+ vxlan vni 100
+#
+interface Vbdif10
+ ip binding vpn-instance vpn1
+```
