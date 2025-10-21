@@ -43,7 +43,7 @@
 
 Часть 2
 
-10.	Настройка соседства BGP EVPN между VTEP1 и VTEP6
+10.	Настройка соседства eBGP EVPN между VTEP1 и VTEP6
 11.	Настройка пересылки EVPN-маршрутов на VTEP1 и VTEP6
 
 ### IP-план
@@ -278,3 +278,77 @@ Vlanif10                    192.168.10.10/24   up       up       --
     0.00% packet loss
     round-trip min/avg/max = 7/14/38 ms
 ```
+```
+<VTEP-7>disp vxlan tunnel 
+Number of vxlan tunnel : 2
+Tunnel ID   Source                Destination           State  Type     Uptime
+-----------------------------------------------------------------------------------
+4026531841  7.7.7.7               8.8.8.8               up     dynamic  0238h02m  
+4026531842  7.7.7.7               6.6.6.6               up     dynamic  0238h00m  
+```
+
+```
+<SRV-3>disp ip int br
+Interface                   IP Address/Mask    Physical Protocol VPN           
+MEth0/0/0                   unassigned         up       down     --            
+NULL0                       unassigned         up       up(s)    --            
+Vlanif30                    192.168.30.10/24   up       up       --            
+<SRV-3>ping 192.168.40.10
+  PING 192.168.40.10: 56  data bytes, press CTRL_C to break
+    Reply from 192.168.40.10: bytes=56 Sequence=1 ttl=253 time=44 ms
+    Reply from 192.168.40.10: bytes=56 Sequence=2 ttl=253 time=8 ms
+    Reply from 192.168.40.10: bytes=56 Sequence=3 ttl=253 time=10 ms
+    Reply from 192.168.40.10: bytes=56 Sequence=4 ttl=253 time=10 ms
+    Reply from 192.168.40.10: bytes=56 Sequence=5 ttl=253 time=10 ms
+
+  --- 192.168.40.10 ping statistics ---
+    5 packet(s) transmitted
+    5 packet(s) received
+    0.00% packet loss
+    round-trip min/avg/max = 8/16/44 ms
+```
+
+### 10.	Настройка соседства eBGP EVPN между VTEP1 и VTEP6
+
+Настройка VTEP1:
+```
+bgp 100
+ peer 6.6.6.6 as-number 200
+ peer 6.6.6.6 ebgp-max-hop 255
+ peer 6.6.6.6 connect-interface LoopBack0
+ l2vpn-family evpn
+  peer 6.6.6.6 enable
+```
+
+Настройка VTEP6:
+```
+bgp 200
+ peer 1.1.1.1 as-number 100
+ peer 1.1.1.1 ebgp-max-hop 255
+ peer 1.1.1.1 connect-interface LoopBack0
+ l2vpn-family evpn
+  peer 1.1.1.1 enable
+```
+
+### 11.	Настройка пересылки EVPN-маршрутов на VTEP1 и VTEP6
+
+Настройка VTEP1:
+```
+bgp 100
+ l2vpn-family evpn
+  peer 2.2.2.2 import reoriginate
+  peer 3.3.3.3 import reoriginate
+  peer 6.6.6.6 advertise route-reoriginated evpn ip
+```
+
+Настройка VTEP6:
+```
+bgp 200
+ l2vpn-family evpn
+  peer 7.7.7.7 import reoriginate
+  peer 8.8.8.8 import reoriginate
+  peer 1.1.1.1 advertise route-reoriginated evpn ip
+```
+
+### ПРОВЕРКА
+
