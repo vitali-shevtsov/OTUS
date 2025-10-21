@@ -379,7 +379,8 @@ Interface                   IP Address/Mask    Physical Protocol VPN
 MEth0/0/0                   unassigned         up       down     --            
 NULL0                       unassigned         up       up(s)    --            
 Vlanif10                    192.168.10.10/24   up       up       --            
-
+```
+```
 <SRV-1>ping 192.168.20.10
   PING 192.168.20.10: 56  data bytes, press CTRL_C to break
     Reply from 192.168.20.10: bytes=56 Sequence=1 ttl=253 time=22 ms
