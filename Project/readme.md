@@ -14,7 +14,7 @@
 
 ### Физическая топология
 
-Для реализации проекта собрана минимальная физическая топология, где каждое устройство выполняет функции VTEP. Все клиенты (SRV-1, SRV-2, SRV-3, SRV-4) находятся в разных подсетях, поэтому нужно обеспечить полную L3-связность между ними:
+Для реализации проекта собрана минимальная физическая топология (PNETLab на образах Huawei CloudEngine 12800), где каждое устройство выполняет функции VTEP. Все клиенты (SRV-1, SRV-2, SRV-3, SRV-4) находятся в разных подсетях, поэтому нужно обеспечить полную L3-связность между ними:
 
 <img width="854" height="496" alt="image" src="https://github.com/user-attachments/assets/c52e64a9-6b3e-4962-bd83-1a68e9e7d793" />
 
@@ -39,12 +39,12 @@
 6.	Настройка VTEP1 в качестве RR для VTEP2 и VTEP3. Настройка VTEP6 в качестве RR для VTEP7 и VTEP8. 
 7.	Настройка IP-адресов назначения для VxLAN-туннелей
 8.	Настройка distributed VXLAN gateway на VTEP2, VTEP3, VTEP7 и VTEP8
-9.	Настройка default route на VTEP1 and VTEP6. Каждый из VTEP’ов обеспечивает связность в пределах своей AS, а также между AS.
+9.	Настройка default route на VTEP1 и VTEP6. 
 
 Часть 2
 
-1.	Настройка соседства BGP EVPN между VTEP1 и VTEP6
-2.	Настройка регенерации EVPN-маршрутов на VTEP1 и VTEP6
+10.	Настройка соседства BGP EVPN между VTEP1 и VTEP6
+11.	Настройка пересылки EVPN-маршрутов на VTEP1 и VTEP6
 
 ### IP-план
 
@@ -210,4 +210,71 @@ interface Nve1
 interface Nve1
  source 2.2.2.2
  vni 10 head-end peer-list protocol bgp
+```
+
+### 8.	Настройка distributed VXLAN gateway на VTEP2, VTEP3, VTEP7 и VTEP8
+
+Настройка на VTEP2 (аналогично для VTEP3, VTEP7, VTEP8):
+
+```
+interface Vbdif10
+ ip address 192.168.10.1 255.255.255.0
+ arp distribute-gateway enable
+ mac-address 0000-5e00-2222
+ arp collect host enable
+```
+
+### 9. Настройка default route на VTEP1 и VTEP6. 
+
+Каждый из VTEP’ов обеспечивает связность в пределах своей AS, а также между AS.
+
+VTEP1:
+```
+ip route-static vpn-instance vpn1 0.0.0.0 0.0.0.0 NULL0
+bgp 100
+ ipv4-family vpn-instance vpn1
+  import-route static
+  default-route imported
+  import-route direct
+```
+
+VTEP6:
+```
+ip route-static vpn-instance vpn1 0.0.0.0 0.0.0.0 NULL0
+bgp 200
+ ipv4-family vpn-instance vpn1
+  default-route imported
+  import-route direct
+  import-route static
+```
+
+Проверим VXLAN-based связность в пределах каждого ЦОДа:
+```
+<VTEP2>disp vxlan tunnel 
+Number of vxlan tunnel : 2
+Tunnel ID   Source                Destination           State  Type     Uptime
+-----------------------------------------------------------------------------------
+4026531841  2.2.2.2               3.3.3.3               up     dynamic  0238h10m  
+4026531842  2.2.2.2               1.1.1.1               up     dynamic  0238h08m  
+```
+```
+<SRV-1> disp ip int br
+Interface                   IP Address/Mask    Physical Protocol VPN           
+MEth0/0/0                   unassigned         up       down     --            
+NULL0                       unassigned         up       up(s)    --            
+Vlanif10                    192.168.10.10/24   up       up       --            
+
+<SRV-1>ping 192.168.20.10
+  PING 192.168.20.10: 56  data bytes, press CTRL_C to break
+    Reply from 192.168.20.10: bytes=56 Sequence=1 ttl=253 time=38 ms
+    Reply from 192.168.20.10: bytes=56 Sequence=2 ttl=253 time=7 ms
+    Reply from 192.168.20.10: bytes=56 Sequence=3 ttl=253 time=9 ms
+    Reply from 192.168.20.10: bytes=56 Sequence=4 ttl=253 time=8 ms
+    Reply from 192.168.20.10: bytes=56 Sequence=5 ttl=253 time=8 ms
+
+  --- 192.168.20.10 ping statistics ---
+    5 packet(s) transmitted
+    5 packet(s) received
+    0.00% packet loss
+    round-trip min/avg/max = 7/14/38 ms
 ```
