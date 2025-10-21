@@ -371,7 +371,7 @@ Destination/Mask    Proto   Pre  Cost        Flags NextHop         Interface
 
 ### ПРОВЕРКА
 
-Проверяем IP-связность между SRV:
+Проверяем IP-связность между SRV (на примере SRV-1):
 
 ```
 <SRV-1>disp ip int br
