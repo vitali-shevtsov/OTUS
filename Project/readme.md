@@ -350,5 +350,75 @@ bgp 200
   peer 1.1.1.1 advertise route-reoriginated evpn ip
 ```
 
+После выполнения настроек выше IP-префиксы между ЦОДами будут транслироваться через VXLAN-туннель:
+
+```
+<VTEP-1>disp ip routing-table  vpn-instance vpn1  protocol bgp 
+
+Destination/Mask    Proto   Pre  Cost        Flags NextHop         Interface
+
+   192.168.10.0/24  IBGP    255  0             RD  2.2.2.2         VXLAN
+   192.168.10.1/32  IBGP    255  0             RD  2.2.2.2         VXLAN
+  192.168.10.10/32  IBGP    255  0             RD  2.2.2.2         VXLAN
+   192.168.20.0/24  IBGP    255  0             RD  3.3.3.3         VXLAN
+   192.168.20.1/32  IBGP    255  0             RD  3.3.3.3         VXLAN
+  192.168.20.10/32  IBGP    255  0             RD  3.3.3.3         VXLAN
+   192.168.30.0/24  EBGP    255  0             RD  6.6.6.6         VXLAN
+   192.168.30.1/32  EBGP    255  0             RD  6.6.6.6         VXLAN
+   192.168.40.0/24  EBGP    255  0             RD  6.6.6.6         VXLAN
+   192.168.40.1/32  EBGP    255  0             RD  6.6.6.6         VXLAN
+```
+
 ### ПРОВЕРКА
 
+Проверяем IP-связность между SRV:
+
+```
+<SRV-1>disp ip int br
+Interface                   IP Address/Mask    Physical Protocol VPN           
+MEth0/0/0                   unassigned         up       down     --            
+NULL0                       unassigned         up       up(s)    --            
+Vlanif10                    192.168.10.10/24   up       up       --            
+
+<SRV-1>ping 192.168.20.10
+  PING 192.168.20.10: 56  data bytes, press CTRL_C to break
+    Reply from 192.168.20.10: bytes=56 Sequence=1 ttl=253 time=22 ms
+    Reply from 192.168.20.10: bytes=56 Sequence=2 ttl=253 time=8 ms
+    Reply from 192.168.20.10: bytes=56 Sequence=3 ttl=253 time=11 ms
+    Reply from 192.168.20.10: bytes=56 Sequence=4 ttl=253 time=9 ms
+    Reply from 192.168.20.10: bytes=56 Sequence=5 ttl=253 time=6 ms
+
+  --- 192.168.20.10 ping statistics ---
+    5 packet(s) transmitted
+    5 packet(s) received
+    0.00% packet loss
+    round-trip min/avg/max = 6/11/22 ms
+
+<SRV-1>ping 192.168.30.10
+  PING 192.168.30.10: 56  data bytes, press CTRL_C to break
+    Reply from 192.168.30.10: bytes=56 Sequence=1 ttl=251 time=24 ms
+    Reply from 192.168.30.10: bytes=56 Sequence=2 ttl=251 time=11 ms
+    Reply from 192.168.30.10: bytes=56 Sequence=3 ttl=251 time=12 ms
+    Reply from 192.168.30.10: bytes=56 Sequence=4 ttl=251 time=11 ms
+    Reply from 192.168.30.10: bytes=56 Sequence=5 ttl=251 time=10 ms
+
+  --- 192.168.30.10 ping statistics ---
+    5 packet(s) transmitted
+    5 packet(s) received
+    0.00% packet loss
+    round-trip min/avg/max = 10/13/24 ms
+ 
+<SRV-1>ping 192.168.40.10
+  PING 192.168.40.10: 56  data bytes, press CTRL_C to break
+    Reply from 192.168.40.10: bytes=56 Sequence=1 ttl=251 time=18 ms
+    Reply from 192.168.40.10: bytes=56 Sequence=2 ttl=251 time=12 ms
+    Reply from 192.168.40.10: bytes=56 Sequence=3 ttl=251 time=12 ms
+    Reply from 192.168.40.10: bytes=56 Sequence=4 ttl=251 time=13 ms
+    Reply from 192.168.40.10: bytes=56 Sequence=5 ttl=251 time=9 ms
+
+  --- 192.168.40.10 ping statistics ---
+    5 packet(s) transmitted
+    5 packet(s) received
+    0.00% packet loss
+    round-trip min/avg/max = 9/12/18 ms    
+```
