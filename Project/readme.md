@@ -104,9 +104,7 @@ interface eth-trunk 10
 stp edged-port enable
 ```
 
-Настойка M-LAG между VTEP8 и VTEP9.
-
-Создать Eth-Trunk в режиме LACP на VTEP8 и добавить в него физические интерфейсы. Зеркально настроить VTEP9.
+Настойка M-LAG между VTEP8 и VTEP9: создание Eth-Trunk в режиме LACP на VTEP8 и добавление в него физических интерфейсов. Зеркально настраивается VTEP9.
 
 ```
 interface eth-trunk 1
@@ -129,7 +127,7 @@ dfs-group 1
 source ip 4.4.4.4
 ```
 
-Настроить peer link между Leaf1 и Leaf3:
+Настроить peer link между VTEP8 и VTEP9:
 
 ```
 interface eth-trunk 1
@@ -137,19 +135,11 @@ undo stp enable
 peer-link 1
 ```
 
-Связать eth-trunk 10 с DFS-группой на Leaf1 и Leaf3:
+Связать eth-trunk 10 с DFS-группой на VTEP8 и VTEP9:
 
 ```
 interface eth-trunk 10
 dfs-group 1 m-lag 1
-```
-
-Настройка клиентского порта на примере Leaf1.
-```
-bridge-domain 10
-interface eth-trunk 10.1 mode l2
- encapsulation dot1q vid 10
- bridge-domain 10
 ```
 
 ### 3. Настройка клиентских портов на VTEP2, VTEP3, VTEP7, VTEP8
