@@ -161,10 +161,10 @@ interface GE1/0/2.1 mode l2
 
 Настройка на VTEP8 (на VTEP9 аналогично):
 ```
-bridge-domain 10
+bridge-domain 40
 interface eth-trunk 10.1 mode l2
  encapsulation dot1q vid 10
- bridge-domain 10
+ bridge-domain 40
 ```
 
 
