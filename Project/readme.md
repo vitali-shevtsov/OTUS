@@ -280,7 +280,7 @@ interface Nve1
 interface Nve1
  source 89.89.89.89
  mac-address 0000-5e00-0101
- vni 10 head-end peer-list protocol bgp
+ vni 40 head-end peer-list protocol bgp
 ```
 
 ### 9.	Настройка distributed VXLAN gateway на VTEP2, VTEP3, VTEP7 и VTEP8, VTEP9
