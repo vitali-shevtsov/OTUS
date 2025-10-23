@@ -144,9 +144,9 @@ interface eth-trunk 10
 dfs-group 1 m-lag 1
 ```
 
-### 3. Настройка клиентских портов на VTEP2, VTEP3, VTEP7, VTEP8
+### 3. Настройка клиентских портов на VTEP'ах
 
-На примере VTEP2 (аналогично для VTEP3, VTEP7, VTEP8):
+На примере VTEP2 (аналогично для VTEP3, VTEP7):
 ```
 bridge-domain 10
 #
@@ -156,8 +156,20 @@ interface GE1/0/2
 interface GE1/0/2.1 mode l2
  encapsulation dot1q vid 10
  bridge-domain 10
-
 ```
+
+Настройка на VTEP8, VTEP9:
+```
+bridge-domain 10
+#
+interface GE1/0/2
+ port link-type trunk
+#
+interface GE1/0/2.1 mode l2
+ encapsulation dot1q vid 10
+ bridge-domain 10
+```
+
 
 ### 4.	Настройка EVPN на VTEP2, VTEP3, VTEP7, VTEP8 и их привязка к BD
 
