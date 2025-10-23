@@ -265,13 +265,30 @@ interface Nve1
  source 1.1.1.1
 ```
 
-Настройка на VTEP2 (аналогично для VTEP3, VTEP7, VTEP8, VTEP9):
+Настройка на VTEP2 (аналогично для VTEP3, VTEP7):
 
 ```
 interface Nve1
  source 2.2.2.2
  vni 10 head-end peer-list protocol bgp
 ```
+
+Настройка на VTEP8, VTEP9:
+
+```
+interface Nve1
+ source 86.86.86.86
+ mac-address 0000-5e00-0101
+ vni 10 head-end peer-list protocol bgp
+```
+
+```
+interface Nve1
+ source 96.96.96.96
+ mac-address 0000-5e00-0101
+ vni 10 head-end peer-list protocol bgp
+```
+
 
 ### 9.	Настройка distributed VXLAN gateway на VTEP2, VTEP3, VTEP7 и VTEP8, VTEP9
 
