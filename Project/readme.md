@@ -23,7 +23,8 @@
 
 Логическая связность между сетевыми хостами будет реализована посредством VxLAN-туннелей следующим образом:
 
-![Project topo](https://github.com/user-attachments/assets/c56e9de0-496f-4ce1-81eb-a68f0018b2ef)
+
+![Project topo](https://github.com/user-attachments/assets/13a87133-330e-4b72-b6b4-937a8ce8cc19)
 
 
 
