@@ -283,7 +283,7 @@ interface Nve1
  vni 40 head-end peer-list protocol bgp
 ```
 
-### 9.	Настройка distributed VXLAN gateway на VTEP2, VTEP3, VTEP7 и VTEP8, VTEP9
+### 9.	Настройка distributed VXLAN gateway на VTEP2, VTEP3, VTEP7 и anycast-gateway на VTEP8, VTEP9
 
 Настройка на VTEP2 (аналогично для VTEP3, VTEP7), VTEP8, VTEP9):
 
@@ -299,7 +299,6 @@ interface Vbdif10
 
 ```
 interface Vbdif10
- ip binding vpn-instance vpn1
  ip address 192.168.40.1 255.255.255.0
  mac-address 0000-5e00-0102 
  vxlan anycast-gateway enable
