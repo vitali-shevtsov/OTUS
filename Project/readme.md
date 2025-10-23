@@ -360,14 +360,6 @@ Vlanif10                    192.168.10.10/24   up       up       --
     0.00% packet loss
     round-trip min/avg/max = 7/14/38 ms
 ```
-```
-<VTEP-7>disp vxlan tunnel 
-Number of vxlan tunnel : 2
-Tunnel ID   Source                Destination           State  Type     Uptime
------------------------------------------------------------------------------------
-4026531841  7.7.7.7               8.8.8.8               up     dynamic  0238h02m  
-4026531842  7.7.7.7               6.6.6.6               up     dynamic  0238h00m  
-```
 
 ```
 <SRV-3>disp ip int br
