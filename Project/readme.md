@@ -122,9 +122,11 @@ trunkport GE1/0/2
 
 ```
 dfs-group 1
-source ip 2.2.2.2
+source ip 8.8.8.8
+```
+```
 dfs-group 1
-source ip 4.4.4.4
+source ip 9.9.9.9
 ```
 
 Настроить peer link между VTEP8 и VTEP9:
