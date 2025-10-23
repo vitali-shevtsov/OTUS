@@ -46,8 +46,8 @@
 11.	Настройка пересылки EVPN-маршрутов на VTEP1 и VTEP6
 
 ### IP-план
+![project ip plan](https://github.com/user-attachments/assets/449d63d3-1744-473c-989b-0f4500aaadfa)
 
- ![project ip plan](https://github.com/user-attachments/assets/8f05db71-d565-4ea9-a806-a9a24f6bc39b)
 
 ### Таблица инстансов BGP EVPN
 
