@@ -95,6 +95,62 @@ ospf 1
 
 ### 2.	Настроить VTEP8 и VTEP9 как Root bridge; настоить M-LAG между VTEP8 и VTEP9.
 
+Настройка VTEP8 и VTEP9 как Root bridge, Bridge ID на обоих устройствах одинаковый.
+
+```
+stp root primary
+stp bridge-address 0039-0039-0039
+interface eth-trunk 10
+stp edged-port enable
+```
+
+Настойка M-LAG между VTEP8 и VTEP9.
+
+Создать Eth-Trunk в режиме LACP на VTEP8 и добавить в него физические интерфейсы. Зеркально настроить VTEP9.
+
+```
+interface eth-trunk 1
+mode lacp-static
+trunkport GE1/0/8
+trunkport GE1/0/9
+```
+```
+interface eth-trunk 10
+mode lacp-static
+trunkport GE1/0/2
+```
+
+Настройка Dynamic Fabric Service (DFS) на VTEP8 и VTEP9:
+
+```
+dfs-group 1
+source ip 2.2.2.2
+dfs-group 1
+source ip 4.4.4.4
+```
+
+Настроить peer link между Leaf1 и Leaf3:
+
+```
+interface eth-trunk 1
+undo stp enable
+peer-link 1
+```
+
+Связать eth-trunk 10 с DFS-группой на Leaf1 и Leaf3:
+
+```
+interface eth-trunk 10
+dfs-group 1 m-lag 1
+```
+
+Настройка клиентского порта на примере Leaf1.
+```
+bridge-domain 10
+interface eth-trunk 10.1 mode l2
+ encapsulation dot1q vid 10
+ bridge-domain 10
+```
 
 ### 3. Настройка клиентских портов на VTEP2, VTEP3, VTEP7, VTEP8
 
