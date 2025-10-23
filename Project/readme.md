@@ -285,13 +285,24 @@ interface Nve1
 
 ### 9.	Настройка distributed VXLAN gateway на VTEP2, VTEP3, VTEP7 и VTEP8, VTEP9
 
-Настройка на VTEP2 (аналогично для VTEP3, VTEP7, VTEP8, VTEP9):
+Настройка на VTEP2 (аналогично для VTEP3, VTEP7), VTEP8, VTEP9):
 
 ```
 interface Vbdif10
  ip address 192.168.10.1 255.255.255.0
  arp distribute-gateway enable
  mac-address 0000-5e00-2222
+ arp collect host enable
+```
+
+Настройка на VTEP8 (аналогично VTEP9):
+
+```
+interface Vbdif10
+ ip binding vpn-instance vpn1
+ ip address 192.168.40.1 255.255.255.0
+ mac-address 0000-5e00-0102 
+ vxlan anycast-gateway enable
  arp collect host enable
 ```
 
