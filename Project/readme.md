@@ -298,9 +298,9 @@ interface Vbdif10
 Настройка на VTEP8 (аналогично VTEP9):
 
 ```
-interface Vbdif10
+interface Vbdif40
  ip address 192.168.40.1 255.255.255.0
- mac-address 0000-5e00-0102 
+ mac-address 0000-5e00-0104 
  vxlan anycast-gateway enable
  arp collect host enable
 ```
