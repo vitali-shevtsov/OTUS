@@ -15,7 +15,6 @@
 ### Физическая топология
 
 Для реализации проекта собрана минимальная физическая топология (PNETLab на образах Huawei CloudEngine 12800), где каждое устройство выполняет функции VTEP. Все клиенты (SRV-1, SRV-2, SRV-3, SRV-4) находятся в разных подсетях, поэтому нужно обеспечить полную L3-связность между ними. SRV-4 подключен сразу к двум коммутаторам с использованием технологии VPC:
-![Project topo](https://github.com/user-attachments/assets/ea205ce9-e77c-4ed8-8c37-2a4e8a8e392c)
 
 ![Project topo ph](https://github.com/user-attachments/assets/d55557cd-9ab2-4d33-8325-6dfd8d9e0e88)
 
@@ -23,6 +22,8 @@
 ### Схема VxLAN-туннелей
 
 Логическая связность между сетевыми хостами будет реализована посредством VxLAN-туннелей следующим образом:
+
+![Project topo](https://github.com/user-attachments/assets/ea205ce9-e77c-4ed8-8c37-2a4e8a8e392c)
 
 ![Project topo](https://github.com/user-attachments/assets/13a87133-330e-4b72-b6b4-937a8ce8cc19)
 
