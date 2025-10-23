@@ -25,7 +25,6 @@
 
 ![Project topo](https://github.com/user-attachments/assets/ea205ce9-e77c-4ed8-8c37-2a4e8a8e392c)
 
-![Project topo](https://github.com/user-attachments/assets/13a87133-330e-4b72-b6b4-937a8ce8cc19)
 
 ### Последовательность работы
 
