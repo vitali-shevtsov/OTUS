@@ -23,10 +23,7 @@
 
 Логическая связность между сетевыми хостами будет реализована посредством VxLAN-туннелей следующим образом:
 
-
 ![Project topo](https://github.com/user-attachments/assets/13a87133-330e-4b72-b6b4-937a8ce8cc19)
-
-
 
 ### Последовательность работы
 
@@ -54,11 +51,13 @@
 
 ### Таблица инстансов BGP EVPN
 
+![project evpn inst~](https://github.com/user-attachments/assets/fefe4302-faf6-4925-a8f7-a2109aba190a)
 ![project evpn inst~](https://github.com/user-attachments/assets/e9d2fb0d-0df9-4516-88b7-14460593bc54)
 
 
 ### Таблица VPN-инстансов
 
+![project vpn inst](https://github.com/user-attachments/assets/34ca289d-9a8b-42b3-a2f4-360117c521d7)
 ![project vpn inst](https://github.com/user-attachments/assets/af62acbb-e6a3-4ef0-9c2e-e8f50f28dca7)
 
 ## Настройка
